@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
+  <rect width="120" height="120" rx="16" fill="#fdf4ff"/>
+  <!-- Buku tulis spiral / catatan -->
+  <rect x="32" y="24" width="60" height="74" rx="6" fill="#fae8ff" stroke="#a855f7" stroke-width="3"/>
+  <!-- Garis-garis isi buku -->
+  <line x1="42" y1="42" x2="82" y2="42" stroke="#d8b4fe" stroke-width="2"/>
+  <line x1="42" y1="52" x2="82" y2="52" stroke="#d8b4fe" stroke-width="2"/>
+  <line x1="42" y1="62" x2="82" y2="62" stroke="#d8b4fe" stroke-width="2"/>
+  <line x1="42" y1="72" x2="72" y2="72" stroke="#d8b4fe" stroke-width="2"/>
+  <line x1="42" y1="82" x2="82" y2="82" stroke="#d8b4fe" stroke-width="2"/>
+  <!-- Spiral kiri -->
+  <g fill="#9333ea">
+    <circle cx="32" cy="34" r="3.5"/><circle cx="32" cy="46" r="3.5"/>
+    <circle cx="32" cy="58" r="3.5"/><circle cx="32" cy="70" r="3.5"/>
+    <circle cx="32" cy="82" r="3.5"/>
+  </g>
+  <!-- Label nama kotak -->
+  <rect x="48" y="28" width="34" height="12" rx="2" fill="#ffffff" stroke="#c084fc" stroke-width="1.5"/>
+</svg>

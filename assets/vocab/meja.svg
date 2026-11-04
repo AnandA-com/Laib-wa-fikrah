@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
+  <rect width="120" height="120" rx="16" fill="#f8fafc"/>
+  <!-- Papan meja perspektif -->
+  <polygon points="15,48 105,48 95,64 25,64" fill="#d97706" stroke="#92400e" stroke-width="3"/>
+  <!-- Kolom laci meja -->
+  <rect x="26" y="64" width="68" height="12" fill="#b45309" stroke="#78350f" stroke-width="2"/>
+  <circle cx="60" cy="70" r="2.5" fill="#fde047"/>
+  <!-- Kaki meja 4 -->
+  <line x1="28" y1="76" x2="24" y2="104" stroke="#78350f" stroke-width="5" stroke-linecap="round"/>
+  <line x1="38" y1="76" x2="36" y2="98" stroke="#92400e" stroke-width="4" stroke-linecap="round"/>
+  <line x1="82" y1="76" x2="84" y2="98" stroke="#92400e" stroke-width="4" stroke-linecap="round"/>
+  <line x1="92" y1="76" x2="96" y2="104" stroke="#78350f" stroke-width="5" stroke-linecap="round"/>
+  <!-- Buku di atas meja -->
+  <rect x="48" y="38" width="22" height="8" rx="1" fill="#3b82f6"/>
+</svg>

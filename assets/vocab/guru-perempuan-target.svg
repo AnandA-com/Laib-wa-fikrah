@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160" role="img" aria-labelledby="title desc">
+  <title id="title">Guru perempuan berhijab membawa buku</title>
+  <desc id="desc">Ilustrasi guru perempuan berhijab ungu dengan wajah kuning, pakaian ungu, dan buku biru.</desc>
+  <defs>
+    <linearGradient id="hijab" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a855f7"/>
+      <stop offset="1" stop-color="#7e22ce"/>
+    </linearGradient>
+    <linearGradient id="dress" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9333ea"/>
+      <stop offset="1" stop-color="#6b21a8"/>
+    </linearGradient>
+    <filter id="shadow" x="-25%" y="-15%" width="150%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#4c1d95" flood-opacity=".18"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <!-- Pakaian guru -->
+    <path d="M28 153 C30 120 36 94 45 82 L75 82 C84 94 90 120 92 153 Z" fill="url(#dress)" stroke="#581c87" stroke-width="2"/>
+    <path d="M45 88 L60 105 L75 88" fill="#c084fc" stroke="#6b21a8" stroke-width="1.6"/>
+    <path d="M60 105 V152" stroke="#581c87" stroke-width="1.7" opacity=".6"/>
+    <circle cx="60" cy="119" r="2" fill="#f0abfc"/>
+    <circle cx="60" cy="132" r="2" fill="#f0abfc"/>
+    <!-- Hijab ungu -->
+    <path d="M37 62 C32 29 42 10 60 10 C78 10 88 29 83 62 L78 81 C72 89 48 89 42 81 Z" fill="url(#hijab)" stroke="#6b21a8" stroke-width="2.5"/>
+    <path d="M41 61 C45 78 75 80 79 61 C73 68 67 71 60 71 C53 71 47 68 41 61 Z" fill="#7e22ce" opacity=".9"/>
+    <path d="M43 27 C51 16 69 15 77 27" fill="none" stroke="#d8b4fe" stroke-width="2" opacity=".7"/>
+    <!-- Wajah sederhana sesuai ikon target -->
+    <ellipse cx="60" cy="48" rx="15" ry="18" fill="#fde68a" stroke="#d97706" stroke-width="1.3"/>
+    <circle cx="55" cy="47" r="2" fill="#1e293b"/>
+    <circle cx="65" cy="47" r="2" fill="#1e293b"/>
+    <path d="M55 56 Q60 60 65 56" fill="none" stroke="#db2777" stroke-width="2" stroke-linecap="round"/>
+    <!-- Lengan dan buku cyan -->
+    <path d="M39 98 C32 101 31 112 38 117 L52 111 L48 98 Z" fill="#a855f7" stroke="#6b21a8" stroke-width="2"/>
+    <path d="M81 97 C88 100 89 111 82 116 L69 111 L72 98 Z" fill="#a855f7" stroke="#6b21a8" stroke-width="2"/>
+    <g transform="rotate(-3 60 107)">
+      <rect x="47" y="92" width="26" height="30" rx="2.5" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+      <path d="M52 99 H68 M52 105 H68 M52 111 H64" stroke="#e0f2fe" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M48 94 H52 V120 H48" fill="#bae6fd" opacity=".9"/>
+    </g>
+  </g>
+</svg>

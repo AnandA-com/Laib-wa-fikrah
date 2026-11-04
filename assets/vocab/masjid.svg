@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
+  <rect width="120" height="120" rx="16" fill="#f0fdfa"/>
+  <!-- Bangunan masjid utama -->
+  <rect x="30" y="55" width="60" height="50" rx="3" fill="#ffffff" stroke="#0d9488" stroke-width="3"/>
+  <!-- Kubah utama hijau besar -->
+  <path d="M36 55 C36 28 60 22 60 22 C60 22 84 28 84 55 Z" fill="#14b8a6" stroke="#0f766e" stroke-width="2.5"/>
+  <!-- Bulan bintang di puncak kubah -->
+  <path d="M60 22 L60 14" stroke="#eab308" stroke-width="2"/>
+  <circle cx="60" cy="12" r="3.5" fill="#eab308"/>
+  <!-- Pintu gerbang melengkung khas masjid -->
+  <path d="M50 105 V76 Q60 66 70 76 V105 Z" fill="#0d9488"/>
+  <!-- Menara kiri -->
+  <rect x="18" y="40" width="12" height="65" fill="#f0fdfa" stroke="#0d9488" stroke-width="2"/>
+  <path d="M16 40 C16 32 24 28 24 28 C24 28 32 32 32 40 Z" fill="#14b8a6"/>
+  <!-- Menara kanan -->
+  <rect x="90" y="40" width="12" height="65" fill="#f0fdfa" stroke="#0d9488" stroke-width="2"/>
+  <path d="M88 40 C88 32 96 28 96 28 C96 28 104 32 104 40 Z" fill="#14b8a6"/>
+</svg>

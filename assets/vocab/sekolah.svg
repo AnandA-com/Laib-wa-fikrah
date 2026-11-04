@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
+  <rect width="120" height="120" rx="16" fill="#eaf4fd"/>
+  <path d="M15 105h90v5H15z" fill="#9db5c9"/>
+  <!-- Gedung utama -->
+  <rect x="25" y="48" width="70" height="57" rx="3" fill="#ffffff" stroke="#3b82f6" stroke-width="3"/>
+  <!-- Atap segitiga -->
+  <path d="M60 16 L18 48 L102 48 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/>
+  <!-- Menara jam / kubah kecil -->
+  <rect x="52" y="24" width="16" height="18" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+  <circle cx="60" cy="33" r="4" fill="#3b82f6"/>
+  <!-- Pintu -->
+  <path d="M52 105V78a8 8 0 0 1 16 0v27z" fill="#3b82f6"/>
+  <!-- Jendela -->
+  <rect x="32" y="58" width="14" height="14" rx="2" fill="#bfdbfe" stroke="#60a5fa" stroke-width="2"/>
+  <rect x="74" y="58" width="14" height="14" rx="2" fill="#bfdbfe" stroke="#60a5fa" stroke-width="2"/>
+  <rect x="32" y="80" width="14" height="14" rx="2" fill="#bfdbfe" stroke="#60a5fa" stroke-width="2"/>
+  <rect x="74" y="80" width="14" height="14" rx="2" fill="#bfdbfe" stroke="#60a5fa" stroke-width="2"/>
+  <!-- Bendera kecil -->
+  <line x1="60" y1="16" x2="60" y2="6" stroke="#475569" stroke-width="2"/>
+  <polygon points="60,6 72,10 60,14" fill="#ef4444"/>
+</svg>

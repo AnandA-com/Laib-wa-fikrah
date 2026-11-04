@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
+  <rect width="120" height="120" rx="16" fill="#e0f2fe"/>
+  <!-- Kusen pintu -->
+  <rect x="32" y="18" width="56" height="88" rx="4" fill="#78350f" stroke="#451a03" stroke-width="3"/>
+  <!-- Daun pintu kayu -->
+  <rect x="38" y="24" width="44" height="82" rx="2" fill="#d97706"/>
+  <!-- Panel pintu atas -->
+  <rect x="44" y="30" width="32" height="28" rx="3" fill="#b45309" stroke="#78350f" stroke-width="1.5"/>
+  <!-- Panel pintu bawah -->
+  <rect x="44" y="66" width="32" height="32" rx="3" fill="#b45309" stroke="#78350f" stroke-width="1.5"/>
+  <!-- Gagang pintu bulat emas -->
+  <circle cx="45" cy="68" r="4" fill="#facc15" stroke="#ca8a04" stroke-width="1.5"/>
+</svg>

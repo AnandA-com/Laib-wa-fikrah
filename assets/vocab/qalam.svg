@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
+  <rect width="120" height="120" rx="16" fill="#f1f5f9"/>
+  <!-- Pena miring diagonal -->
+  <g transform="rotate(-45 60 60)">
+    <!-- Badan pena -->
+    <rect x="52" y="30" width="16" height="50" rx="2" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+    <!-- Klip pena -->
+    <rect x="68" y="32" width="4" height="26" rx="2" fill="#94a3b8"/>
+    <!-- Ujung pena kerucut -->
+    <polygon points="52,80 68,80 60,98" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
+    <!-- Mata pena tinta -->
+    <polygon points="57,92 63,92 60,98" fill="#1e293b"/>
+    <!-- Tutup atas -->
+    <rect x="50" y="24" width="20" height="8" rx="3" fill="#1e40af"/>
+  </g>
+</svg>

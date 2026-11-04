@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
+  <rect width="120" height="120" rx="16" fill="#fef2f2"/>
+  <!-- Kursi kayu sekolah -->
+  <!-- Sandaran belakang -->
+  <rect x="36" y="24" width="48" height="34" rx="4" fill="#d97706" stroke="#92400e" stroke-width="2.5"/>
+  <rect x="42" y="32" width="36" height="18" rx="2" fill="#fef3c7"/>
+  <!-- Tiang sandaran -->
+  <rect x="38" y="58" width="6" height="16" fill="#b45309"/>
+  <rect x="76" y="58" width="6" height="16" fill="#b45309"/>
+  <!-- Dudukan kursi -->
+  <rect x="30" y="70" width="60" height="10" rx="3" fill="#ea580c" stroke="#9a3412" stroke-width="2.5"/>
+  <!-- Kaki kursi 4 -->
+  <line x1="36" y1="80" x2="34" y2="104" stroke="#9a3412" stroke-width="5" stroke-linecap="round"/>
+  <line x1="46" y1="80" x2="48" y2="100" stroke="#b45309" stroke-width="4" stroke-linecap="round"/>
+  <line x1="74" y1="80" x2="72" y2="100" stroke="#b45309" stroke-width="4" stroke-linecap="round"/>
+  <line x1="84" y1="80" x2="86" y2="104" stroke="#9a3412" stroke-width="5" stroke-linecap="round"/>
+  <!-- Penyangga bawah -->
+  <line x1="36" y1="94" x2="84" y2="94" stroke="#78350f" stroke-width="3"/>
+</svg>

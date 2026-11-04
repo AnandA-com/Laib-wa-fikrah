@@ -1,0 +1,1172 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2878F6">
+  <meta name="description" content="Laib Wa Fikrah — website game pembelajaran Bahasa Arab tema lingkungan dan perlengkapan sekolah untuk   ().">
+  <title>Laib Wa Fikrah · Belajar Bahasa Arab  </title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+    :root {
+      --blue:#2878f6; --blue-dark:#1756be; --blue-soft:#eef7fd; --blue-pale:#dff2ff;
+      --green:#10b981; --green-soft:#e7fbf3; --orange:#f57b55; --orange-soft:#fff0e9;
+      --purple:#8853e8; --purple-soft:#f1ebff; --yellow:#ffc94d; --yellow-soft:#fff8df;
+      --ink:#183653; --muted:#687e92; --line:#dce8f0; --paper:#fff; --page:#eef7fd;
+      --shadow:0 18px 45px rgba(38,92,137,.12); --radius:18px;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--page); color:var(--ink); font-family:Poppins,Arial,sans-serif; }
+    /* Colorful school-world background for every screen after the welcome page. */
+    .app-shell { position:relative; isolation:isolate; min-height:100vh; overflow:clip; background:#5457bd; }
+    .app-shell::before { content:""; position:fixed; z-index:-2; inset:0; pointer-events:none; background:url('assets/app-background.jpg') center top / cover no-repeat; filter:saturate(1.12) contrast(.98); }
+    .app-shell::after { content:""; position:fixed; z-index:-1; inset:0; pointer-events:none; background:radial-gradient(circle at 11% 15%,rgba(255,255,255,.9) 0 2px,transparent 3px) 0 0/145px 138px,radial-gradient(circle at 79% 24%,rgba(255,241,170,.85) 0 2px,transparent 3px) 40px 50px/180px 155px,linear-gradient(120deg,rgba(35,76,177,.5),rgba(91,47,170,.3) 48%,rgba(238,114,85,.16)); background-blend-mode:screen,screen,normal; }
+    .app-main,.site-header,footer { position:relative; z-index:1; }
+    button,input { font:inherit; } button { cursor:pointer; } button:focus-visible,input:focus-visible { outline:3px solid rgba(40,120,246,.28); outline-offset:2px; }
+    .arabic { direction:rtl; text-align:right; font-family:Amiri,serif; }
+    .hidden { display:none!important; }
+    .btn { min-height:44px; padding:0 18px; border:1px solid transparent; border-radius:12px; display:inline-flex; align-items:center; justify-content:center; gap:9px; font-size:12px; font-weight:800; transition:transform .18s,box-shadow .18s,background .18s; }
+    .btn:hover { transform:translateY(-2px); }
+    .btn-primary { color:#fff; background:var(--blue); box-shadow:0 8px 16px rgba(40,120,246,.22); }
+    .btn-primary:hover { background:var(--blue-dark); }
+    .btn-green { color:#fff; background:var(--green); box-shadow:0 8px 16px rgba(16,185,129,.18); }
+    .btn-orange { color:#fff; background:var(--orange); box-shadow:0 8px 16px rgba(245,123,85,.2); }
+    .btn-ghost { color:var(--blue); background:#fff; border-color:var(--line); }
+    .btn-soft { color:var(--blue); background:var(--blue-soft); }
+    .btn-yellow { color:#775100; background:var(--yellow); }
+    .eyebrow { display:inline-flex; align-items:center; gap:8px; color:var(--blue); font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; }
+    .eyebrow:before { content:""; width:8px; height:8px; border-radius:50%; background:var(--yellow); box-shadow:0 0 0 5px rgba(255,201,77,.19); }
+    .section-title { display:flex; align-items:end; justify-content:space-between; gap:20px; margin:34px 0 16px; }
+    .section-title h2 { margin:0; font-size:22px; letter-spacing:-.5px; }
+    .section-title p { margin:5px 0 0; color:var(--muted); font-size:12px; line-height:1.55; }
+    .text-button { border:0; background:none; color:var(--blue); font-size:12px; font-weight:800; }
+
+    /* Welcome screen */
+    .welcome-screen { min-height:100vh; display:grid; place-items:center; padding:0; background:linear-gradient(#76c5e8 0%,#b7e7f5 58%,#8ed291 100%); position:relative; overflow:hidden; }
+    .welcome-screen:before { content:""; position:absolute; left:-4%; right:-4%; bottom:-16vh; height:40vh; border-radius:50% 50% 0 0; background:#75c987; box-shadow:0 -18px 0 rgba(255,255,255,.12),0 -38px 0 rgba(79,172,116,.16); }
+    .welcome-screen:after { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(circle at 50% 34%,rgba(255,255,255,.32),transparent 34%),linear-gradient(90deg,rgba(18,86,117,.16),transparent 30%,transparent 70%,rgba(18,86,117,.12)); }
+    .welcome-card { position:relative; z-index:1; width:100%; min-height:100vh; display:block; overflow:hidden; background:transparent; box-shadow:none; }
+    .welcome-art { position:absolute; inset:0; min-height:100vh; overflow:hidden; background:transparent; }
+    .welcome-art:before { content:""; position:absolute; left:7%; right:7%; bottom:19%; height:22%; border-radius:50%; background:rgba(68,159,103,.42); filter:blur(2px); }
+    .welcome-art:after { content:""; position:absolute; left:-5%; right:-5%; bottom:-8%; height:28%; border-radius:50% 50% 0 0; background:#58b979; box-shadow:0 -22px 0 rgba(255,255,255,.12); }
+    .welcome-art .sun { position:absolute; top:8%; right:16%; width:76px; height:76px; border-radius:50%; background:#ffd267; box-shadow:0 0 0 16px rgba(255,210,103,.2); }
+    .welcome-art .cloud { position:absolute; width:130px; height:32px; border-radius:99px; background:rgba(255,255,255,.72); }
+    .welcome-art .cloud:before,.welcome-art .cloud:after { content:""; position:absolute; border-radius:50%; background:inherit; }
+    .welcome-art .cloud:before { width:50px; height:50px; left:20px; bottom:9px; } .welcome-art .cloud:after { width:38px; height:38px; left:70px; bottom:6px; }
+    .welcome-art .cloud.one { left:8%; top:14%; } .welcome-art .cloud.two { right:27%; top:22%; transform:scale(.7); opacity:.6; }
+    .welcome-school { position:absolute; z-index:2; left:32%; right:32%; bottom:29%; height:23%; min-height:130px; border:5px solid #e8c56f; border-radius:10px 10px 0 0; background:#fff8df; box-shadow:0 10px 0 rgba(57,121,103,.14); }
+    .welcome-school .roof { position:absolute; left:-28px; right:-28px; top:-56px; height:60px; background:#eea252; clip-path:polygon(50% 0,100% 100%,0 100%); }
+    .welcome-school .window { position:absolute; top:29%; width:16%; aspect-ratio:1; border:6px solid #71beda; background:#d8f4fb; } .welcome-school .window.left { left:12%; } .welcome-school .window.right { right:12%; }
+    .welcome-school .door { position:absolute; left:42%; bottom:0; width:20%; height:50%; border-radius:12px 12px 0 0; background:#4d8cb7; }
+    .welcome-school .label { position:absolute; left:0; right:0; top:7%; text-align:center; color:#2878a7; font-size:clamp(17px,2.1vw,30px); font-weight:700; }
+    .welcome-character { position:absolute; z-index:5; bottom:9%; width:clamp(130px,15vw,245px); height:clamp(220px,34vh,430px); transform-origin:bottom; }
+    .welcome-character.boy { left:-1%; transform:rotate(-5deg); } .welcome-character.girl { right:4%; transform:rotate(4deg); }
+    .welcome-character .head { position:absolute; z-index:2; left:25%; top:0; width:52%; aspect-ratio:1; border:4px solid #d48660; border-radius:50%; background:#f4bd94; }
+    .welcome-character .head:before,.welcome-character .head:after { content:""; position:absolute; top:46%; width:8%; aspect-ratio:1; border-radius:50%; background:#263f56; } .welcome-character .head:before { left:25%; } .welcome-character .head:after { right:25%; }
+    .welcome-character.boy .head:after { box-shadow:-25px -22px 0 -1px #263f56; } .welcome-character.girl .head { background:#edb68d; border-color:#c7775a; }
+    .welcome-character.girl .head:before,.welcome-character.girl .head:after { z-index:3; }
+    .welcome-character .hijab { position:absolute; z-index:1; left:10%; top:-5%; width:78%; height:72%; border:11px solid #805474; border-bottom-color:transparent; border-radius:50%; }
+    .welcome-character .body { position:absolute; left:10%; bottom:0; width:80%; height:70%; border-radius:34% 34% 9% 9%; background:#f07958; border:4px solid rgba(0,0,0,.07); }
+    .welcome-character.girl .body { background:#765cb4; }
+    .welcome-character .book { position:absolute; z-index:6; left:15%; bottom:23%; width:64%; height:25%; border:4px solid #b98628; border-radius:5px; transform:rotate(-9deg); background:#f7cb58; } .welcome-character.girl .book { transform:rotate(10deg); border-color:#3f8498; background:#62b9d0; }
+    .welcome-character .hand { position:absolute; z-index:6; top:25%; right:-8%; width:20%; height:34%; border-radius:99px; background:#f4bd94; transform:rotate(-36deg); }
+    .welcome-character.girl .hand { background:#edb68d; transform:rotate(34deg); right:2%; }
+    .welcome-badge { position:absolute; z-index:7; left:22%; top:23%; display:grid; place-items:center; width:57px; height:57px; border-radius:50%; color:#fff; background:var(--orange); font-size:29px; transform:rotate(-12deg); box-shadow:0 5px 0 rgba(148,66,48,.2); }
+    .welcome-theme-board { position:absolute; z-index:9; right:14%; bottom:5%; width:min(28vw,360px); height:min(30vh,210px); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:18px; border:9px solid #9c5d35; border-radius:9px; color:#fff3d1; background:#bd7d48; box-shadow:0 10px 0 rgba(84,54,37,.28),inset 0 0 0 3px rgba(255,221,159,.25); transform:rotate(-3deg); text-align:center; }
+    .welcome-theme-board:before { content:""; position:absolute; left:18%; right:18%; top:-29px; height:25px; border-radius:50%; background:#e4a25d; }
+    .welcome-theme-board span { font-size:clamp(12px,2.5vh,24px); font-weight:700; } .welcome-theme-board strong { margin:8px 0 0; color:#fff9e4; font-size:clamp(27px,6vh,58px); line-height:1; } .welcome-theme-board small { margin-top:10px; color:#fff2d2; font-size:clamp(10px,2.3vh,20px); font-weight:700; }
+    .welcome-copy { position:absolute; z-index:12; left:50%; top:39%; width:min(560px,45vw); display:flex; flex-direction:column; align-items:center; transform:translate(-50%,-50%); padding:0; color:var(--ink); text-align:center; }
+    .welcome-copy .eyebrow { display:none; }
+    .brand-arabic { margin:0 0 10px; color:#145da1; font-size:clamp(48px,6.2vw,88px); line-height:1.12; text-shadow:0 3px 0 rgba(255,255,255,.5); }
+    .brand-latin { margin-top:0; color:#1e668d; font-size:clamp(18px,2.5vw,32px); font-weight:800; letter-spacing:.4px; line-height:1.2; }
+    .welcome-copy h1 { margin:12px 0 14px; color:#1e668d; font-size:clamp(15px,2.1vw,28px); line-height:1.25; letter-spacing:.1px; }
+    .welcome-copy h1 span { display:block; }
+    .welcome-copy p { max-width:420px; margin:0; color:#246080; font-size:clamp(11px,1.1vw,14px); line-height:1.55; }
+    .welcome-copy .btn { align-self:center; width:min(31vw,393px); margin-top:8px; min-height:clamp(50px,10vh,73px); padding:0 18px; border-radius:99px; color:#563911; background:linear-gradient(#ffe46b,#f4a51e); box-shadow:0 8px 0 #d38d20,0 12px 22px rgba(105,77,25,.2); font-size:clamp(15px,3.8vh,30px); } .welcome-copy .btn:hover { background:linear-gradient(#ffeb89,#f8b43c); }
+    .scene-school { transform:translateY(138px); }
+    .scene-boy { transform:translateX(-28px); }
+    .scene-girl { transform:translateX(38px); }
+
+    /* Reference background mode: the supplied illustration is the scene,
+       while HTML text, board, and CTA remain interactive layers. */
+    .image-reference-mode { background:#8bcfe8; }
+    .image-reference-mode::before,
+    .image-reference-mode::after { display:none; }
+    .welcome-reference-bg { position:absolute; z-index:0; inset:0; width:100%; height:100%; display:block; object-fit:fill; }
+    .image-reference-mode .scene-svg { display:none; }
+    .image-reference-mode .welcome-theme-board { z-index:9; }
+    .image-reference-mode .welcome-copy { z-index:12; }
+    .image-reference-mode .welcome-copy .btn { position:relative; z-index:13; }
+    .image-reference-mode .brand-arabic,
+    .image-reference-mode .brand-latin,
+    .image-reference-mode .welcome-copy h1 { text-shadow:0 2px 5px rgba(255,255,255,.7); }
+    .welcome-note { display:none; }
+    .brand-latin + .welcome-copy h1 { font-weight:700; }
+
+    /* App shell and navigation */
+    .app-shell { min-height:100vh; }
+    .site-header { position:sticky; top:0; z-index:30; background:rgba(255,255,255,.94); border-bottom:1px solid var(--line); backdrop-filter:blur(12px); }
+    .header-inner { max-width:1240px; min-height:76px; margin:auto; display:flex; align-items:center; gap:25px; padding:0 24px; }
+    .brand-button { display:flex; align-items:center; gap:10px; padding:0; border:0; background:none; color:var(--ink); text-align:left; }
+    .brand-mark { display:grid; place-items:center; width:42px; height:42px; border-radius:13px 13px 13px 4px; color:#fff; background:var(--blue); font-family:Amiri,serif; font-size:25px; box-shadow:0 7px 14px rgba(40,120,246,.22); }
+    .brand-button strong { display:block; font-size:15px; } .brand-button small { color:var(--muted); font-size:9px; font-weight:700; }
+    .site-nav { display:flex; align-items:center; gap:3px; margin-left:auto; }
+    .site-nav button { min-height:40px; padding:0 13px; border:0; border-radius:10px; color:var(--muted); background:transparent; font-size:12px; font-weight:700; }
+    .site-nav button:hover,.site-nav button.active { color:var(--blue); background:var(--blue-soft); }
+    .site-nav .nav-icon { display:inline-grid; place-items:center; margin-right:6px; font-size:13px; font-weight:900; }
+    .header-actions { display:flex; align-items:center; gap:9px; }
+    .star-pill { display:flex; align-items:center; gap:7px; padding:7px 11px 7px 7px; border:1px solid #f0d88c; border-radius:99px; color:#8a650e; background:var(--yellow-soft); font-size:11px; font-weight:800; }
+    .star-icon { display:grid; place-items:center; width:25px; height:25px; border-radius:50%; color:#956800; background:var(--yellow); }
+    .profile { display:grid; place-items:center; width:36px; height:36px; border-radius:50%; color:var(--blue); background:var(--blue-soft); font-size:13px; font-weight:800; }
+    .app-main { max-width:1240px; margin:auto; padding:28px 24px 70px; }
+    .view { display:none; animation:enter .35s ease both; } .view.active { display:block; }
+    @keyframes enter { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+    /* Dashboard */
+    .dashboard-hero { position:relative; display:grid; grid-template-columns:1.15fr .85fr; gap:24px; align-items:center; overflow:hidden; min-height:370px; padding:45px 50px; border-radius:26px; color:#fff; background:linear-gradient(115deg,#1c72dc 0%,#329ee1 60%,#77c9df 100%); box-shadow:0 18px 35px rgba(31,108,179,.18); }
+    .dashboard-hero:before { content:""; position:absolute; width:620px; height:620px; right:-210px; top:-270px; border-radius:50%; border:2px solid rgba(255,255,255,.16); box-shadow:0 0 0 34px rgba(255,255,255,.07),0 0 0 70px rgba(255,255,255,.04); }
+    .dashboard-hero:after { content:""; position:absolute; right:0; bottom:-82px; width:100%; height:160px; border-radius:50% 0 0 0; background:linear-gradient(180deg,rgba(91,196,135,.72),rgba(45,143,92,.8)); clip-path:ellipse(48% 42% at 78% 70%); }
+    .dashboard-copy,.dash-illustration { position:relative; z-index:2; }
+    .dashboard-copy .eyebrow { color:#d8efff; } .dashboard-copy h1 { max-width:510px; margin:13px 0 12px; font-size:41px; line-height:1.06; letter-spacing:-1.5px; } .dashboard-copy p { max-width:520px; margin:0; color:#e4f4ff; font-size:13px; line-height:1.75; }
+    .dashboard-copy .btn-primary { color:var(--blue-dark); background:#fff; } .dashboard-copy .btn-ghost { color:#fff; border-color:rgba(255,255,255,.3); background:rgba(255,255,255,.12); }
+    .dash-illustration { justify-self:end; width:min(100%,420px); min-height:285px; overflow:hidden; border:7px solid rgba(255,255,255,.9); border-radius:28px; background:linear-gradient(#86d3ed 0 55%,#65bf7e 55%); box-shadow:0 19px 30px rgba(9,61,112,.2); transform:rotate(2deg); }
+    .dash-illustration:after { content:""; position:absolute; left:-12%; right:-12%; bottom:-80px; height:140px; border-radius:50%; background:#55b875; }
+    .dash-sun { position:absolute; top:22px; right:24px; width:52px; height:52px; border-radius:50%; background:#ffd267; box-shadow:0 0 0 12px rgba(255,210,103,.18); }
+    .dash-building { position:absolute; z-index:2; left:21%; right:21%; bottom:45px; height:132px; border:4px solid #e7c36c; border-radius:7px 7px 0 0; background:#fff7da; }
+    .dash-building:before { content:""; position:absolute; left:-18px; right:-18px; top:-40px; height:44px; background:#e9a353; clip-path:polygon(50% 0,100% 100%,0 100%); }
+    .dash-window { position:absolute; top:38px; width:36px; height:36px; border:4px solid #72c0dc; background:#d9f4fb; } .dash-window.left { left:15%; } .dash-window.right { right:15%; } .dash-door { position:absolute; left:42%; bottom:0; width:24%; height:61px; border-radius:8px 8px 0 0; background:#4d8cb7; }
+    .dash-student { position:absolute; z-index:4; bottom:30px; width:78px; height:132px; } .dash-student.left { left:3%; } .dash-student.right { right:1%; }
+    .dash-student .head { position:absolute; z-index:2; left:20px; width:40px; height:40px; border-radius:50%; border:3px solid #d48660; background:#f4bd94; } .dash-student .body { position:absolute; bottom:0; left:7px; width:64px; height:88px; border-radius:22px 22px 8px 8px; background:#f07958; } .dash-student.right .body { background:#765cb4; } .dash-student .book { position:absolute; z-index:6; left:13px; bottom:24px; width:53px; height:32px; border:2px solid #b98628; border-radius:3px; transform:rotate(-8deg); background:#f7cb58; } .dash-student.right .book { background:#62b9d0; border-color:#3f8498; transform:rotate(9deg); }
+    .dash-tag { position:absolute; z-index:7; bottom:12px; left:50%; transform:translateX(-50%); padding:7px 12px; border-radius:99px; color:#fff; background:rgba(18,100,163,.88); font-size:10px; font-weight:800; white-space:nowrap; }
+    /* Beranda gaya landing page sesuai referensi kedua */
+    .home-hero-layout { display:grid; grid-template-columns:minmax(0,1.65fr) minmax(270px,.75fr); gap:18px; align-items:stretch; }
+    .home-hero-scene { position:relative; min-height:395px; overflow:hidden; border-radius:25px; background:#86d5ee; box-shadow:var(--shadow); }
+    .home-hero-scene > img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; }
+    .home-hero-shade { position:absolute; inset:0; background:linear-gradient(90deg,rgba(16,76,145,.86) 0%,rgba(18,106,179,.55) 37%,rgba(18,106,179,.08) 72%),linear-gradient(0deg,rgba(25,111,72,.36),transparent 46%); }
+    .home-hero-content { position:absolute; z-index:2; left:42px; top:50%; width:min(53%,510px); transform:translateY(-50%); color:#fff; }
+    .home-hero-content .eyebrow { color:#d9f4ff; }
+    .home-hero-content h1 { max-width:480px; margin:13px 0 12px; font-size:clamp(29px,3.2vw,44px); line-height:1.05; letter-spacing:-1.4px; }
+    .home-hero-content p { max-width:480px; margin:0; color:#e6f6ff; font-size:13px; line-height:1.72; }
+    .home-hero-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:23px; }
+    .home-adventure-btn { color:#664614; background:#ffd451; box-shadow:0 5px 0 #d89b25; }
+    .home-adventure-btn:hover { background:#ffe173; }
+    .home-material-btn { color:#fff; border:1px solid rgba(255,255,255,.55); background:rgba(255,255,255,.16); }
+    .home-theme-chip { position:absolute; z-index:3; right:24px; bottom:20px; min-width:165px; padding:12px 16px; border:4px solid #8f5837; border-radius:10px; color:#fff4d4; background:#af754a; box-shadow:0 7px 0 rgba(63,48,32,.25); text-align:center; transform:rotate(-3deg); }
+    .home-theme-chip span { display:block; font-size:9px; font-weight:800; letter-spacing:1px; } .home-theme-chip strong { display:block; margin:4px 0; font-size:26px; line-height:1; } .home-theme-chip small { font-size:10px; font-weight:700; }
+    .home-goal-card { padding:27px 23px; border:1px solid #d7e7f0; border-radius:22px; background:#fff; box-shadow:var(--shadow); }
+    .goal-icon { display:grid; place-items:center; width:48px; height:48px; margin-bottom:17px; border-radius:15px; color:#e75c5c; background:#fff0e9; font-size:32px; font-weight:900; }
+    .home-goal-card .eyebrow { color:var(--blue); } .home-goal-card h2 { margin:8px 0 11px; color:var(--ink); font-size:23px; } .home-goal-card > p { margin:0; color:var(--muted); font-size:11px; line-height:1.65; }
+    .goal-list { padding:0; margin:20px 0 0; list-style:none; } .goal-list li { display:flex; gap:9px; align-items:flex-start; padding:10px 0; border-top:1px solid #edf2f5; color:var(--ink); font-size:10px; font-weight:700; line-height:1.4; } .goal-list b { flex:0 0 auto; color:var(--blue); font-size:10px; }
+    .stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:18px; }
+    .stat-card { display:flex; align-items:center; gap:13px; padding:16px; border:1px solid var(--line); border-radius:15px; background:#fff; }
+    .stat-card .stat-symbol { display:grid; place-items:center; width:40px; height:40px; border-radius:12px; font-size:18px; } .stat-card:nth-child(1) .stat-symbol { color:#a57400; background:var(--yellow-soft); } .stat-card:nth-child(2) .stat-symbol { color:var(--green); background:var(--green-soft); } .stat-card:nth-child(3) .stat-symbol { color:var(--purple); background:var(--purple-soft); }
+    .stat-card strong { display:block; font-size:20px; line-height:1.1; } .stat-card span { color:var(--muted); font-size:10px; font-weight:700; }
+    .about-layout { display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:16px; margin-top:25px; }
+    .about-card { padding:25px; border:1px solid var(--line); border-radius:20px; background:#fff; box-shadow:0 10px 22px rgba(40,85,110,.06); }
+    .about-main-card { color:#fff; background:linear-gradient(135deg,#2579dc,#55b9db); } .about-main-card .eyebrow { color:#dff5ff; } .about-card h2 { margin:9px 0 10px; font-size:24px; } .about-card h3 { margin:15px 0 8px; font-size:17px; } .about-card p { margin:0; color:var(--muted); font-size:11px; line-height:1.7; } .about-main-card p { color:#eaf8ff; }
+    .about-icon { display:grid; place-items:center; width:43px; height:43px; border-radius:13px; color:#a57400; background:var(--yellow-soft); font-size:21px; } .about-icon.green { color:var(--green); background:var(--green-soft); } .about-pill-row { display:flex; gap:7px; flex-wrap:wrap; margin-top:21px; } .about-pill-row span { padding:7px 10px; border:1px solid rgba(255,255,255,.4); border-radius:99px; color:#fff; background:rgba(255,255,255,.13); font-size:10px; font-weight:800; }
+    .mode-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:13px; }
+    .mode-card { position:relative; padding:20px; min-height:190px; border:1px solid var(--line); border-radius:17px; background:#fff; transition:.2s; }
+    .mode-card:hover { transform:translateY(-4px); box-shadow:var(--shadow); }
+    .mode-card.green { --mode:var(--green); --mode-soft:var(--green-soft); } .mode-card.blue { --mode:var(--blue); --mode-soft:var(--blue-soft); } .mode-card.orange { --mode:var(--orange); --mode-soft:var(--orange-soft); } .mode-card.purple { --mode:var(--purple); --mode-soft:var(--purple-soft); }
+    .mode-icon { display:grid; place-items:center; width:43px; height:43px; border-radius:13px; color:var(--mode); background:var(--mode-soft); font-size:19px; font-weight:800; }
+    .mode-card h3 { margin:18px 0 7px; font-size:16px; } .mode-card p { min-height:39px; margin:0; color:var(--muted); font-size:11px; line-height:1.55; } .mode-card .btn { margin-top:15px; min-height:35px; padding:0 12px; color:var(--mode); background:var(--mode-soft); font-size:10px; }
+    .goal-panel { display:grid; grid-template-columns:1fr 1.5fr; gap:20px; align-items:center; padding:22px 25px; border-radius:20px; background:#fff; border:1px solid var(--line); }
+    .goal-panel h3 { margin:7px 0 6px; font-size:19px; } .goal-panel p { margin:0; color:var(--muted); font-size:11px; line-height:1.6; }
+    .goal-points { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; } .goal-point { padding:12px 9px; border-radius:12px; color:var(--blue); background:var(--blue-soft); text-align:center; font-size:10px; font-weight:800; } .goal-point:nth-child(2) { color:var(--green); background:var(--green-soft); } .goal-point:nth-child(3) { color:var(--orange); background:var(--orange-soft); } .goal-point:nth-child(4) { color:var(--purple); background:var(--purple-soft); } .goal-point b { display:block; margin-bottom:4px; font-size:16px; }
+    .level-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; } .level-card { position:relative; overflow:hidden; padding:21px; min-height:170px; border:1px solid var(--line); border-radius:17px; background:#fff; } .level-card:after { content:""; position:absolute; right:-35px; bottom:-50px; width:125px; height:125px; border-radius:50%; background:var(--level-soft); } .level-card.easy { --level:var(--green); --level-soft:var(--green-soft); } .level-card.medium { --level:#b57b00; --level-soft:var(--yellow-soft); } .level-card.hard { --level:var(--purple); --level-soft:var(--purple-soft); } .level-top { display:flex; justify-content:space-between; color:var(--level); font-size:11px; font-weight:800; } .level-card h3 { margin:19px 0 6px; font-size:19px; } .level-card p { min-height:35px; margin:0; color:var(--muted); font-size:10px; line-height:1.55; } .level-card .btn { position:relative; z-index:2; margin-top:12px; min-height:34px; padding:0 12px; color:var(--level); background:var(--level-soft); font-size:10px; }
+    .tip-banner { display:flex; align-items:center; justify-content:space-between; gap:20px; margin-top:30px; padding:20px 24px; border:1px solid #f0dc9c; border-radius:17px; background:var(--yellow-soft); } .tip-banner strong { display:block; margin-bottom:4px; font-size:14px; } .tip-banner p { margin:0; color:#80672b; font-size:11px; }
+
+    /* Inner pages */
+    .page-heading { display:flex; align-items:end; justify-content:space-between; gap:20px; padding:12px 0 23px; border-bottom:1px solid var(--line); } .page-heading h1 { margin:0; font-size:32px; letter-spacing:-1px; } .page-heading p { margin:8px 0 0; color:var(--muted); font-size:12px; } .page-heading .arabic { color:var(--blue); font-size:35px; }
+    .toolbar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:22px 0 17px; } .search-box { flex:1; min-width:230px; } .search-box input { width:100%; min-height:44px; padding:0 15px; border:1px solid var(--line); border-radius:12px; color:var(--ink); background:#fff; } .search-box input:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(40,120,246,.12); }
+    .material-filters { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:2px 0 18px; } .material-filter { padding:9px 12px; border:1px solid var(--line); border-radius:99px; color:var(--muted); background:#fff; font-size:10px; font-weight:800; } .material-filter b { margin-left:4px; color:var(--blue); } .material-filter.active,.material-filter:hover { color:var(--blue); border-color:#a9cef5; background:var(--blue-soft); }
+    .vocab-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:13px; } .vocab-card { position:relative; min-height:255px; padding:17px; border:1px solid var(--line); border-radius:17px; background:#fff; transition:.2s; } .vocab-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); } .vocab-card .word-visual { display:grid; place-items:center; height:57px; margin-bottom:10px; border-radius:13px; color:var(--blue); background:var(--blue-soft); font-size:26px; } .vocab-card:nth-child(4n+2) .word-visual { color:var(--green); background:var(--green-soft); } .vocab-card:nth-child(4n+3) .word-visual { color:var(--orange); background:var(--orange-soft); } .vocab-card:nth-child(4n+4) .word-visual { color:var(--purple); background:var(--purple-soft); } .vocab-card .arabic { color:var(--ink); font-size:25px; line-height:1; } .vocab-card .translit { margin-top:4px; color:var(--muted); font-size:10px; font-weight:700; } .vocab-card .meaning { margin-top:9px; font-size:12px; font-weight:800; } .vocab-example { display:flex; flex-direction:column; gap:3px; margin-top:11px; padding:8px 9px; border-radius:10px; background:#f6fafc; } .vocab-example span { color:var(--blue); font-size:8px; font-weight:800; text-transform:uppercase; letter-spacing:.5px; } .vocab-example b { font-size:18px; line-height:1.1; } .vocab-example small { color:var(--muted); font-size:9px; } .vocab-actions { display:flex; justify-content:space-between; align-items:center; margin-top:12px; } .audio,.favorite { border:0; background:none; font-size:11px; font-weight:800; } .audio { color:var(--blue); } .favorite { color:#aebdca; font-size:17px; } .favorite.active { color:var(--yellow); }
+    .level-select-shell { position:relative; overflow:hidden; padding:25px 28px 22px; border:1px solid #d7e7f0; border-radius:27px; background:linear-gradient(180deg,#f6fcff 0%,#eaf8fc 52%,#daf2e5 100%); box-shadow:0 16px 35px rgba(38,101,128,.1); }
+    .level-select-heading { position:relative; z-index:3; display:flex; align-items:end; justify-content:space-between; gap:20px; padding:5px 16px 20px; } .level-select-heading .eyebrow { color:var(--blue); } .level-select-title { margin:9px 0 0; color:var(--ink); font-size:35px; letter-spacing:-1px; } .level-select-heading p { margin:7px 0 0; color:var(--muted); font-size:12px; } .level-arabic { color:var(--blue); font-size:44px; }
+    .level-stage { position:relative; min-height:385px; padding:34px 72px 27px; border-radius:21px; background:linear-gradient(#a9e1f1 0%,#dff5f2 56%,#8fca86 57%,#5eae70 100%); overflow:hidden; }
+    .level-stage:before { content:""; position:absolute; inset:0; background:radial-gradient(circle at 51% 12%,rgba(255,255,255,.75),transparent 25%),linear-gradient(180deg,transparent 50%,rgba(49,139,87,.18) 100%); }
+    .level-stage:after { content:""; position:absolute; left:-8%; right:-8%; bottom:-35%; height:55%; border-radius:50% 50% 0 0; background:rgba(69,161,90,.48); }
+    .level-cloud { position:absolute; z-index:1; width:150px; height:32px; border-radius:99px; background:rgba(255,255,255,.78); } .level-cloud:before,.level-cloud:after { content:""; position:absolute; border-radius:50%; background:inherit; } .level-cloud:before { width:55px; height:55px; left:24px; bottom:8px; } .level-cloud:after { width:42px; height:42px; left:79px; bottom:6px; } .cloud-a { left:18%; top:13%; } .cloud-b { right:18%; top:21%; transform:scale(.72); opacity:.75; }
+    .level-ground { position:absolute; z-index:2; left:0; right:0; bottom:0; height:35%; background:linear-gradient(180deg,transparent,#55a96c); opacity:.72; }
+    .level-page-grid { position:relative; z-index:5; display:grid; grid-template-columns:repeat(3,1fr); gap:15px; margin:0 auto; max-width:900px; } .level-page-card { position:relative; overflow:hidden; min-height:275px; padding:21px; border:3px solid rgba(255,255,255,.8); border-radius:20px; background:#fff; box-shadow:0 11px 20px rgba(44,101,111,.16); transition:.2s; } .level-page-card:hover { transform:translateY(-5px); box-shadow:0 16px 26px rgba(44,101,111,.23); } .level-page-card:after { content:""; position:absolute; right:-35px; bottom:-50px; width:145px; height:145px; border-radius:50%; background:var(--soft); } .level-page-card.easy { --accent:#159866; --soft:#d7f4e5; } .level-page-card.medium { --accent:#247dcc; --soft:#dceeff; } .level-page-card.hard { --accent:#7856bd; --soft:#eee5ff; } .level-card-top { position:relative; z-index:2; display:flex; justify-content:space-between; align-items:center; } .level-page-card .level-number { color:var(--accent); font-size:10px; font-weight:900; letter-spacing:.5px; } .level-stars { color:#f5b833; font-size:15px; letter-spacing:1px; } .level-page-card h2 { position:relative; z-index:2; margin:19px 0 8px; color:var(--accent); font-size:25px; } .level-page-card p { position:relative; z-index:2; min-height:52px; margin:0; color:var(--muted); font-size:11px; line-height:1.6; } .level-page-card ul { position:relative; z-index:2; padding-left:17px; margin:14px 0; color:var(--ink); font-size:10px; line-height:1.75; } .level-page-card .btn { position:relative; z-index:3; min-height:38px; padding:0 13px; color:#fff; background:var(--accent); font-size:10px; } .level-page-card .btn-green { background:#159866; } .level-page-card .btn-yellow { color:#fff; background:#247dcc; } .level-page-card .btn-purple { color:#fff; background:#7856bd; }
+    .level-character { position:absolute; z-index:7; pointer-events:none; object-fit:contain; object-position:bottom; filter:drop-shadow(0 12px 7px rgba(45,91,71,.18)); } .level-character.boy { left:-42px; bottom:-58px; width:235px; height:390px; } .level-character.girl { right:-39px; bottom:-58px; width:245px; height:385px; }
+    .level-bottom-note { position:relative; z-index:8; display:flex; align-items:center; gap:13px; margin:16px 48px 0; padding:13px 17px; border:1px solid #cae9d5; border-radius:15px; background:rgba(255,255,255,.82); } .level-note-icon { display:grid; place-items:center; flex:0 0 auto; width:35px; height:35px; border-radius:11px; color:#a57400; background:#fff4c6; } .level-bottom-note strong { display:block; font-size:12px; } .level-bottom-note p { margin:3px 0 0; color:var(--muted); font-size:10px; } .level-bottom-note .btn { margin-left:auto; min-height:35px; color:var(--blue); background:var(--blue-soft); font-size:10px; }
+
+    /* Color treatment inspired by the colorful game reference, while keeping the school illustration as the app background. */
+    .app-shell .site-header { background:linear-gradient(90deg,rgba(38,66,157,.96),rgba(91,57,166,.95) 52%,rgba(192,81,117,.94)); border-bottom:3px solid rgba(255,211,75,.9); box-shadow:0 7px 22px rgba(35,35,106,.2); }
+    .app-shell .brand-button { color:#fff; } .app-shell .brand-button small { color:#e6f6ff; } .app-shell .brand-mark { color:#68460a; background:#ffd34e; box-shadow:0 5px 0 rgba(171,112,24,.38); }
+    .app-shell .site-nav button { color:rgba(255,255,255,.82); } .app-shell .site-nav button:hover { color:#fff; background:rgba(255,255,255,.16); } .app-shell .site-nav button.active { color:#5d410a; background:#ffd34e; box-shadow:0 4px 0 rgba(167,106,22,.28); }
+    .app-shell .star-pill { border-color:#ffe084; color:#6e4b07; background:#fff4bd; } .app-shell .profile { color:#6d3f88; background:#ffe7f1; }
+    .app-shell .view:not(#home) > .page-heading { margin-bottom:20px; padding:18px 22px; border:3px solid rgba(255,255,255,.82); border-radius:21px; background:rgba(255,255,255,.9); box-shadow:0 12px 28px rgba(38,54,131,.14); }
+    .app-shell .view:not(#home) > .page-heading .arabic { color:#7547b8; }
+    .app-shell .section-title { padding:13px 17px; border:2px solid rgba(255,255,255,.75); border-radius:17px; background:rgba(255,255,255,.88); box-shadow:0 8px 20px rgba(38,54,131,.1); }
+    .app-shell .level-select-shell { border-color:#ffe071; box-shadow:0 15px 35px rgba(44,45,128,.2); }
+    .app-shell footer { color:#fff; text-shadow:0 1px 3px rgba(24,35,100,.42); } .app-shell footer strong { color:#ffe27a; }
+
+    .game-picker-layout { display:grid; grid-template-columns:235px 1fr; gap:18px; margin-top:25px; } .filter-panel { padding:20px; border:1px solid var(--line); border-radius:17px; background:#fff; align-self:start; } .filter-panel h3 { margin:0 0 15px; font-size:14px; } .level-choice { width:100%; display:flex; justify-content:space-between; padding:12px 11px; margin-top:8px; border:1px solid var(--line); border-radius:11px; color:var(--muted); background:#fff; text-align:left; font-size:11px; font-weight:800; } .level-choice.active { color:var(--blue); border-color:#a9cef5; background:var(--blue-soft); } .level-choice.locked, [data-level].locked { color:#9aa7b3 !important; border-color:#e1e7eb !important; background:#dfe4ea !important; cursor:not-allowed !important; opacity:.6 !important; filter: grayscale(1) !important; pointer-events: none !important; } .filter-panel p { margin:20px 0 0; color:var(--muted); font-size:10px; line-height:1.6; }
+    .game-cards { display:grid; grid-template-columns:1fr 1fr; gap:14px; } .game-card { position:relative; min-height:195px; padding:23px; border:1px solid var(--line); border-radius:18px; background:#fff; transition:.2s; } .game-card:hover { transform:translateY(-4px); box-shadow:var(--shadow); } .game-card.green { --game:var(--green); --game-soft:var(--green-soft); } .game-card.blue { --game:var(--blue); --game-soft:var(--blue-soft); } .game-card.orange { --game:var(--orange); --game-soft:var(--orange-soft); } .game-card.purple { --game:var(--purple); --game-soft:var(--purple-soft); } .game-card .game-icon { display:grid; place-items:center; width:45px; height:45px; border-radius:13px; color:var(--game); background:var(--game-soft); font-size:19px; font-weight:800; } .game-card h3 { margin:18px 0 6px; font-size:17px; } .game-card p { min-height:37px; margin:0; color:var(--muted); font-size:11px; line-height:1.55; } .game-card .btn { margin-top:15px; color:var(--game); background:var(--game-soft); font-size:10px; }
+    .game-session { display:grid; grid-template-columns:235px 1fr; gap:18px; margin-top:25px; } .session-side { padding:20px; border:1px solid var(--line); border-radius:17px; background:#fff; align-self:start; } .session-side h3 { margin:0 0 13px; font-size:14px; } .session-mode { padding:12px; border-radius:12px; color:var(--blue); background:var(--blue-soft); font-size:11px; font-weight:800; } .session-side p { color:var(--muted); font-size:10px; line-height:1.6; } .game-board { padding:30px; border:1px solid var(--line); border-radius:22px; background:#fff; box-shadow:var(--shadow); } .game-top { display:flex; align-items:center; justify-content:space-between; gap:15px; margin-bottom:14px; } .question-meta { color:var(--blue); font-size:11px; font-weight:800; } .score-badge { padding:8px 11px; border-radius:10px; color:#89610b; background:var(--yellow-soft); font-size:11px; font-weight:800; } .progress-track { height:7px; overflow:hidden; margin-bottom:25px; border-radius:99px; background:#e9f0f4; } .progress-track span { display:block; height:100%; border-radius:inherit; background:var(--blue); transition:width .3s; }
+    .game-board h2 { margin:0 0 7px; font-size:25px; } .game-help { margin:0 0 21px; color:var(--muted); font-size:12px; } .visual-question { display:grid; place-items:center; min-height:120px; margin-bottom:19px; border-radius:16px; color:var(--blue-dark); background:var(--blue-soft); } .visual-question .arabic { font-size:46px; } .phrase-visual { max-width:100%; padding:0 18px; font-size:32px !important; line-height:1.55; text-align:center; overflow-wrap:anywhere; } .object-picture { display:grid; place-items:center; width:94px; height:94px; border-radius:25px; color:var(--green); background:var(--green-soft); font-size:47px; } .answer-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; } .answer { min-height:52px; padding:10px 13px; border:1px solid var(--line); border-radius:12px; color:var(--ink); background:#fff; text-align:left; font-size:12px; font-weight:700; transition:.15s; } .answer:hover { border-color:#9ec8f7; background:#f8fbff; } .answer.correct { color:#08734e; border-color:#91ddc0; background:var(--green-soft); } .answer.wrong { color:#a13e3e; border-color:#efaaaa; background:#fff0f0; } .feedback { min-height:23px; margin-top:16px; font-size:12px; font-weight:800; } .feedback.ok { color:var(--green); } .feedback.bad { color:#cf4d4d; } .game-bottom { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:18px; } .game-bottom small { color:var(--muted); font-size:10px; }
+    .listen-box { display:grid; place-items:center; min-height:120px; margin-bottom:19px; border:1px dashed #b4cddd; border-radius:16px; background:#f9fcfd; } .listen-button { display:grid; place-items:center; width:65px; height:65px; border:0; border-radius:50%; color:#fff; background:var(--orange); box-shadow:0 9px 17px rgba(245,123,85,.22); font-size:21px; } .listen-box small { margin-top:9px; color:var(--muted); font-size:10px; }
+    .sentence-area { display:flex; flex-wrap:wrap; align-items:center; gap:8px; min-height:78px; padding:13px; margin-bottom:16px; border:2px dashed #b9d2e1; border-radius:14px; background:#fbfdfe; direction:rtl; text-align:right; } .sentence-area.empty:before { content:"Ketuk ubin kata untuk menyusun kalimat"; color:#91a5b3; font-size:11px; font-weight:700; } .word-chip { padding:9px 13px; border:1px solid #b9d6e9; border-radius:10px; color:var(--blue-dark); background:var(--blue-soft); font:700 20px Amiri,serif; direction:rtl; } .word-bank { display:flex; flex-wrap:wrap; gap:8px; direction:rtl; } .word-bank .word-chip { cursor:pointer; color:var(--ink); background:#fff; } .word-bank .word-chip.used { opacity:.3; cursor:default; }
+
+    /* Result and progress */
+    .result-card { max-width:690px; margin:30px auto; padding:40px; border:1px solid var(--line); border-radius:24px; background:#fff; box-shadow:var(--shadow); text-align:center; } .result-check { display:grid; place-items:center; width:72px; height:72px; margin:0 auto 18px; border-radius:50%; color:var(--green); background:var(--green-soft); font-size:31px; font-weight:800; } .result-card h1 { margin:0 0 7px; font-size:30px; } .result-card p { color:var(--muted); font-size:12px; } .result-score { margin:20px 0 4px; color:var(--blue); font-size:53px; font-weight:800; line-height:1; } .result-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:24px 0; } .result-stat { padding:14px; border-radius:13px; background:#f6f9fa; } .result-stat strong { display:block; font-size:20px; } .result-stat span { color:var(--muted); font-size:10px; font-weight:700; }
+    .progress-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; margin-top:24px; } .progress-card { padding:19px; border:1px solid var(--line); border-radius:16px; background:#fff; } .progress-card .progress-symbol { display:grid; place-items:center; width:37px; height:37px; margin-bottom:13px; border-radius:11px; color:var(--blue); background:var(--blue-soft); font-size:17px; } .progress-card:nth-child(2) .progress-symbol { color:var(--yellow); background:var(--yellow-soft); } .progress-card:nth-child(3) .progress-symbol { color:var(--purple); background:var(--purple-soft); } .progress-card strong { display:block; font-size:24px; } .progress-card span { color:var(--muted); font-size:10px; font-weight:700; }
+    .progress-layout { display:grid; grid-template-columns:1.1fr .9fr; gap:18px; margin-top:18px; } .panel { padding:23px; border:1px solid var(--line); border-radius:18px; background:#fff; } .panel h3 { margin:0 0 18px; font-size:15px; } .bar-row { margin:16px 0; } .bar-label { display:flex; justify-content:space-between; margin-bottom:7px; font-size:11px; font-weight:800; } .bar-label span:last-child { color:var(--muted); } .bar { height:9px; overflow:hidden; border-radius:99px; background:#edf2f5; } .bar i { display:block; height:100%; border-radius:inherit; background:var(--blue); transition:width .3s; } .bar-row:nth-child(3) i { background:var(--green); } .bar-row:nth-child(4) i { background:var(--orange); } .bar-row:nth-child(5) i { background:var(--purple); }
+    .achievement-grid { display:grid; grid-template-columns:1fr 1fr; gap:9px; } .achievement { padding:13px 10px; border-radius:13px; color:#9aaab6; background:#f5f8fa; font-size:10px; font-weight:700; } .achievement.unlocked { color:#80600d; background:var(--yellow-soft); } .achievement b { display:block; margin-bottom:5px; font-size:20px; }
+    .empty-message { padding:35px 18px; border:1px dashed var(--line); border-radius:15px; color:var(--muted); background:#fff; text-align:center; font-size:12px; }
+    .toast { position:fixed; z-index:50; left:50%; bottom:25px; padding:12px 16px; border-radius:11px; color:#fff; background:var(--ink); box-shadow:0 10px 25px rgba(0,0,0,.18); font-size:11px; font-weight:800; opacity:0; transform:translate(-50%,12px); pointer-events:none; transition:.25s; } .toast.show { opacity:1; transform:translate(-50%,0); }
+    footer { max-width:1240px; margin:auto; padding:0 24px 35px; display:flex; align-items:center; justify-content:space-between; gap:20px; color:#8ba0ae; font-size:10px; } footer strong { color:var(--blue); } .footer-socials { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:8px; } .footer-social-link { display:inline-flex; align-items:center; gap:6px; min-height:32px; padding:5px 9px; border:1px solid rgba(255,255,255,.38); border-radius:10px; color:#fff; background:rgba(27,43,126,.42); text-decoration:none; font-size:10px; font-weight:800; transition:transform .18s,background .18s,border-color .18s; } .footer-social-link:hover { transform:translateY(-2px); border-color:#ffe071; color:#fff; background:rgba(255,211,78,.28); } .footer-social-link:focus-visible { outline:3px solid rgba(255,224,113,.8); outline-offset:2px; } .footer-social-link svg { width:16px; height:16px; flex:0 0 auto; fill:currentColor; } @media (max-width:720px) { footer { align-items:flex-start; flex-direction:column; } .footer-socials { justify-content:flex-start; } }
+
+    @media (max-width:980px) { .welcome-card { width:100%; max-width:none; } .welcome-art { min-height:100vh; } .welcome-copy { width:min(560px,52vw); } .dashboard-hero { grid-template-columns:1fr; } .dash-illustration { justify-self:start; } .home-hero-layout { grid-template-columns:1fr; } .home-goal-card { display:grid; grid-template-columns:auto 1fr; column-gap:15px; align-items:start; } .home-goal-card .goal-icon { grid-row:span 2; } .home-goal-card > p,.home-goal-card .goal-list { grid-column:2; } .about-layout { grid-template-columns:1fr 1fr; } .about-main-card { grid-column:1/-1; } .mode-grid { grid-template-columns:1fr 1fr; } .goal-panel { grid-template-columns:1fr; } .vocab-grid { grid-template-columns:repeat(3,1fr); } .game-picker-layout,.game-session { grid-template-columns:1fr; } .filter-panel,.session-side { position:static; } .progress-layout { grid-template-columns:1fr; } }
+    @media (max-width:640px) { .welcome-screen { padding:0; min-height:100svh; } .welcome-card { min-height:100svh; border-radius:0; } .welcome-art { min-height:100svh; } .welcome-school { left:25%; right:25%; bottom:25%; height:17%; min-height:92px; } .welcome-school .roof { top:-38px; height:42px; } .welcome-school .label { font-size:14px; } .welcome-character { width:135px; height:220px; bottom:3%; transform:scale(.72); transform-origin:bottom; } .welcome-character.boy { left:-5%; } .welcome-character.girl { right:-7%; } .welcome-theme-board { right:2%; bottom:4%; width:132px; min-height:96px; padding:11px 7px; border-width:5px; } .welcome-theme-board:before { top:-17px; height:14px; } .welcome-theme-board span { font-size:9px; } .welcome-theme-board strong { font-size:24px; } .welcome-theme-board small { font-size:8px; } .welcome-copy { top:22%; width:78vw; } .brand-arabic { margin-bottom:5px; font-size:clamp(33px,10vw,48px); } .brand-latin { font-size:17px; } .welcome-copy h1 { margin:6px 0 0; font-size:13px; } .welcome-copy .btn { margin-top:16px; min-width:164px; min-height:44px; font-size:12px; } .header-inner { min-height:69px; flex-wrap:wrap; gap:9px; padding:11px 16px; } .site-nav { order:3; width:100%; overflow-x:auto; margin:0; } .site-nav button { flex:0 0 auto; } .header-actions { margin-left:auto; } .profile { display:none; } .app-main { padding:18px 16px 55px; } .dashboard-hero { padding:28px 24px; border-radius:21px; } .dashboard-copy h1 { font-size:32px; } .dash-illustration { display:none; } .stat-row,.level-grid,.progress-cards { grid-template-columns:1fr; } .mode-grid,.game-cards { grid-template-columns:1fr 1fr; } .goal-points { grid-template-columns:1fr 1fr; } .page-heading { align-items:start; flex-direction:column; } .page-heading h1 { font-size:28px; } .page-heading .arabic { font-size:29px; } .vocab-grid { grid-template-columns:1fr 1fr; } .game-board { padding:20px; } .answer-grid { grid-template-columns:1fr; } .game-board h2 { font-size:22px; } .result-card { padding:28px 20px; } .result-stats { grid-template-columns:1fr 1fr 1fr; } .tip-banner { align-items:start; flex-direction:column; } footer { padding:0 16px 28px; flex-direction:column; } }
+    @media (max-width:720px) { .level-select-shell { padding:18px 12px 14px; border-radius:21px; } .level-select-heading { align-items:flex-start; padding:4px 7px 15px; } .level-select-title { font-size:27px; letter-spacing:-.5px; } .level-select-heading p { max-width:270px; font-size:11px; } .level-arabic { font-size:28px; } .level-stage { min-height:0; padding:22px 12px 18px; border-radius:17px; } .level-page-grid { grid-template-columns:1fr; gap:12px; max-width:390px; } .level-page-card { min-height:0; padding:17px; } .level-page-card h2 { margin-top:12px; font-size:22px; } .level-page-card p { min-height:0; } .level-page-card ul { margin:10px 0; } .level-page-card .btn { min-height:44px; } .level-character { opacity:.95; } .level-character.boy { left:-82px; bottom:-42px; width:165px; height:245px; } .level-character.girl { right:-78px; bottom:-42px; width:175px; height:240px; } .level-cloud { opacity:.55; transform:scale(.65); } .cloud-a { left:4%; top:8%; } .cloud-b { right:3%; top:16%; } .level-bottom-note { align-items:flex-start; margin:13px 0 0; padding:12px; } .level-bottom-note .btn { display:none; } }
+    @media (max-width:390px) { .mode-grid,.game-cards,.vocab-grid { grid-template-columns:1fr; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; scroll-behavior:auto!important; } }
+  
+    .level-pill { font-size:10px; border-style:dashed; }
+    .vocab-card .badge-level { position:absolute; top:12px; right:12px; padding:3px 8px; border-radius:99px; font-size:9px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; }
+    .badge-level.easy { color:#08734e; background:#e7fbf3; border:1px solid #b7edd7; }
+    .badge-level.medium { color:#8a650e; background:#fff8df; border:1px solid #f6e2a2; }
+    .badge-level.hard { color:#6236b5; background:#f1ebff; border:1px solid #dac6fd; }
+    .result-predicate { display:inline-block; padding:8px 20px; margin:16px auto 8px; border-radius:99px; font-size:16px; font-weight:800; letter-spacing:.3px; }
+    .result-predicate.excellent { color:#08734e; background:#e7fbf3; border:2px solid #a3e7cd; }
+    .result-predicate.good { color:#145da1; background:#eef7fd; border:2px solid #bfe3fc; }
+    .result-predicate.practice { color:#a56314; background:#fff7e6; border:2px solid #ffd899; }
+    .result-predicate.repeat { color:#b92c2c; background:#fff0f0; border:2px solid #ffcccc; }
+    .result-advice { max-width:480px; margin:6px auto 20px; font-size:12px; color:var(--muted); line-height:1.6; }
+
+  
+    .vocab-card .word-visual { position:relative; overflow:hidden; display:grid; place-items:center; height:110px; margin-bottom:12px; border-radius:15px; background:#f8fbfe; border:1px solid #dcebf6; }
+    .vocab-card .word-visual img { display:block; width:100%; height:100%; min-width:0; min-height:0; max-width:100%; max-height:100%; box-sizing:border-box; object-fit:contain; padding:8px; }
+    .object-picture { width:180px; height:180px; border-radius:24px; overflow:hidden; display:grid; place-items:center; background:#ffffff; border:3px solid #cfe5f7; box-shadow:0 12px 28px rgba(24,80,140,.12); }
+    .object-picture img { display:block; width:100%; height:100%; min-width:0; min-height:0; max-width:100%; max-height:100%; box-sizing:border-box; object-fit:contain; padding:10px; }
+
+  
+    /* Differentiate Category and Level Filters */
+    .category-btn.active { 
+        background: var(--blue) !important; 
+        color: white !important; 
+        border-color: var(--blue) !important; 
+    }
+    .level-choice.active { 
+        background: #8e44ad !important; /* Purple */
+        color: white !important; 
+        border-color: #7d3c98 !important; 
+    }
+    .level-choice { 
+        border-color: #dcdde1 !important; 
+    }
+    .level-choice:hover {
+        background: #f3e5f5 !important;
+        border-color: #8e44ad !important;
+    }
+    
+
+    /* High Priority Style Override for Filters */
+    .category-btn { 
+        background-color: #2878f6 !important; 
+        color: white !important; 
+        border: 2px solid #2878f6 !important; 
+        transition: all 0.2s ease;
+    }
+    .category-btn:hover {
+        background-color: #1a5fcc !important;
+        border-color: #1a5fcc !important;
+    }
+    .category-btn.active { 
+        background-color: #1a5fcc !important; 
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.2) !important; 
+        border-color: #0d47a1 !important;
+    }
+    
+    .level-choice { 
+        background-color: white !important; 
+        color: #555 !important; 
+        border: 2px solid #dcdde1 !important; 
+        transition: all 0.2s ease;
+    }
+    .level-choice.active { 
+        background-color: #f0f7ff !important; 
+        color: #2878f6 !important; 
+        border-color: #2878f6 !important; 
+        font-weight: bold !important;
+    }
+    .level-choice:hover {
+        background-color: #f9f9f9 !important;
+        border-color: #bcccdc !important;
+    }
+    
+
+    /* Final Force Override for Category Buttons */
+    .category-btn, [data-vocab-category] { 
+        background-color: #2878f6 !important; 
+        color: #ffffff !important; 
+        border: 2px solid #2878f6 !important; 
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    }
+    .category-btn:hover, [data-vocab-category]:hover {
+        background-color: #1a5fcc !important;
+        color: #ffffff !important;
+        border-color: #1a5fcc !important;
+    }
+    .category-btn.active, [data-vocab-category].active { 
+        background-color: #0d47a1 !important; 
+        color: #ffffff !important; 
+        border-color: #0d47a1 !important;
+        font-weight: bold !important;
+    }
+    
+
+    /* Force all text and numbers in category buttons to be white */
+    .category-btn, .category-btn *, [data-vocab-category], [data-vocab-category] * { 
+        color: #ffffff !important; 
+    }
+    
+</style>
+</head>
+<body>
+  <section id="welcomeScreen" class="welcome-screen">
+    <div class="welcome-card">
+      <div class="welcome-art image-reference-mode" aria-label="Ilustrasi taman sekolah dengan dua siswa">
+        <img class="welcome-reference-bg" src="assets/welcome-background.jpg" alt="Ilustrasi sekolah dan dua siswa">
+        <svg class="scene-svg" viewBox="0 0 1280 720" preserveAspectRatio="none" role="img" aria-label="Taman sekolah cerah dengan dua siswa, sekolah, pepohonan, dan bunga">
+          <defs>
+            <linearGradient id="skyGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#63bde5"/><stop offset=".58" stop-color="#b9e8f2"/><stop offset="1" stop-color="#e4f4d7"/></linearGradient>
+            <linearGradient id="hillGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#96d995"/><stop offset="1" stop-color="#4ca96f"/></linearGradient>
+            <linearGradient id="grassGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#63c17b"/><stop offset="1" stop-color="#31885d"/></linearGradient>
+            <linearGradient id="roofGradient" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f6b65c"/><stop offset="1" stop-color="#dd713f"/></linearGradient>
+            <linearGradient id="buttonGlow" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffe46b"/><stop offset="1" stop-color="#f4a51e"/></linearGradient>
+            <filter id="softShadow" x="-30%" y="-30%" width="160%" height="180%"><feGaussianBlur in="SourceAlpha" stdDeviation="7"/><feOffset dy="8"/><feComponentTransfer><feFuncA type="linear" slope=".22"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <filter id="smallShadow" x="-30%" y="-30%" width="160%" height="180%"><feGaussianBlur in="SourceAlpha" stdDeviation="3"/><feOffset dy="4"/><feComponentTransfer><feFuncA type="linear" slope=".25"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <rect width="1280" height="720" fill="url(#skyGradient)"/>
+          <circle cx="1075" cy="105" r="62" fill="#ffd66b" opacity=".95"/><circle cx="1075" cy="105" r="88" fill="#ffe9a2" opacity=".18"/>
+          <g class="scene-cloud" fill="#fff" opacity=".67">
+            <path d="M290 205c18-32 62-38 87-10 13-37 70-38 86 4 44-16 87 15 81 55H237c-10-24 17-54 53-49z"/>
+            <path d="M790 116c12-25 46-30 67-9 12-31 54-29 67 5 34-12 69 11 66 42H750c-8-19 11-42 40-38z" opacity=".72"/>
+            <path d="M36 326c11-21 39-25 57-8 9-24 43-23 54 4 27-9 52 10 50 34H8c-6-16 8-32 28-30z" opacity=".46"/>
+          </g>
+          <g class="scene-distant-trees" opacity=".65">
+            <path d="M0 352c90-104 178-105 260 0v138H0z" fill="#6fbf7b"/><path d="M1020 364c71-108 173-112 260-7v140h-260z" fill="#67b87a"/>
+            <g fill="#4f9e69"><circle cx="64" cy="302" r="46"/><circle cx="151" cy="277" r="66"/><circle cx="238" cy="313" r="47"/><circle cx="1132" cy="298" r="58"/><circle cx="1221" cy="278" r="67"/></g>
+          </g>
+          <path d="M0 423c170-85 304-69 438 0 146-80 293-77 420 0 130-86 283-76 422 2v295H0z" fill="url(#hillGradient)"/>
+          <path d="M0 515c201-92 356-53 530 18 141-56 290-65 444 0 115-48 211-45 306 8v179H0z" fill="url(#grassGradient)"/>
+          <path d="M395 720c45-127 130-216 245-216 112 0 197 89 242 216z" fill="#d9bd79" opacity=".55"/>
+          <path d="M486 720c30-116 83-182 154-182 71 0 125 66 154 182z" fill="#f1da9b" opacity=".55"/>
+          <g class="scene-trees" aria-hidden="true">
+            <path d="M74 465h38l-10-142H83zM1192 477h39l-9-158h-22z" fill="#93603e"/>
+            <g fill="#247b59"><circle cx="75" cy="301" r="62"/><circle cx="139" cy="337" r="73"/><circle cx="43" cy="374" r="62"/><circle cx="1186" cy="316" r="71"/><circle cx="1240" cy="358" r="71"/><circle cx="1137" cy="367" r="65"/></g>
+            <g fill="#4ea66b"><circle cx="64" cy="267" r="39"/><circle cx="150" cy="291" r="43"/><circle cx="1185" cy="275" r="46"/><circle cx="1250" cy="320" r="45"/></g>
+          </g>
+          <g class="scene-school" filter="url(#softShadow)">
+            <ellipse cx="640" cy="527" rx="260" ry="29" fill="#347f59" opacity=".48"/>
+            <path d="M430 309h420v221H430z" fill="#fff1c9" stroke="#dfad62" stroke-width="7"/>
+            <path d="M395 316l245-158 245 158z" fill="url(#roofGradient)" stroke="#c8643c" stroke-width="8" stroke-linejoin="round"/>
+            <path d="M490 250h300l-150-92z" fill="#f9ca68" opacity=".48"/>
+            <rect x="464" y="349" width="78" height="70" rx="8" fill="#a8def0" stroke="#438db7" stroke-width="8"/><path d="M503 350v69M465 384h77" stroke="#438db7" stroke-width="5"/>
+            <rect x="738" y="349" width="78" height="70" rx="8" fill="#a8def0" stroke="#438db7" stroke-width="8"/><path d="M777 350v69M739 384h77" stroke="#438db7" stroke-width="5"/>
+            <rect x="610" y="385" width="60" height="145" rx="15" fill="#4b86ad" stroke="#356a91" stroke-width="6"/>
+            <circle cx="657" cy="458" r="5" fill="#f4ce69"/>
+            <rect x="552" y="291" width="176" height="55" rx="11" fill="#f7df9c" stroke="#d5a653" stroke-width="5"/>
+            <text x="640" y="328" text-anchor="middle" fill="#286a9b" font-size="29" font-family="Amiri,serif" font-weight="700">المدرسة</text>
+            <path d="M418 531h444" stroke="#d29a50" stroke-width="12" stroke-linecap="round"/>
+          </g>
+          <g class="scene-flags" opacity=".72"><path d="M365 413v-84M914 413v-84" stroke="#8b6748" stroke-width="5"/><path d="M366 330l49 15-49 16z" fill="#f6bf56"/><path d="M915 330l-49 15 49 16z" fill="#ee7d61"/></g>
+          <g class="scene-boy" filter="url(#smallShadow)">
+            <path d="M35 602c22-155 102-257 230-258 94-2 157 54 185 176l-25 181H28z" fill="#222f49" opacity=".9"/>
+            <path d="M100 466c-32 53-55 112-69 178l104 20 37-166z" fill="#1e304b" stroke="#17223a" stroke-width="7"/>
+            <path d="M198 429c-32 25-54 83-60 161l171 0c-7-76-33-135-72-161z" fill="#f8f5e9" stroke="#d6d2c2" stroke-width="6"/>
+            <path d="M226 435l29 67 30-67 18 25-43 78-46-78z" fill="#254b84"/>
+            <path d="M182 571h144v90H175z" fill="#263e6b" stroke="#1a2c51" stroke-width="7"/><path d="M213 656v64h-49M295 656v64h49" stroke="#172443" stroke-width="21" stroke-linecap="round"/>
+            <path d="M174 716h-57M340 716h57" stroke="#f5ead5" stroke-width="25" stroke-linecap="round"/>
+            <path d="M184 279c4-75 63-119 124-100 57 18 74 81 45 135-29 54-103 73-146 27-16-18-25-39-23-62z" fill="#f2b982" stroke="#a85e4c" stroke-width="6"/>
+            <path d="M176 269c-13-82 25-142 92-144 62-3 100 45 92 112-31-42-69-48-110-34-24 8-42 30-74 66z" fill="#51362d" stroke="#392823" stroke-width="8"/>
+            <path d="M184 205c24-53 100-66 148-22l-5 45c-43-27-94-27-143 10z" fill="#6d4635"/>
+            <ellipse cx="247" cy="282" rx="9" ry="12" fill="#24364c"/><ellipse cx="306" cy="278" rx="9" ry="12" fill="#24364c"/><path d="M253 317c19 17 37 15 51-2" fill="none" stroke="#873e43" stroke-width="7" stroke-linecap="round"/>
+            <path d="M195 445c-70-18-106-73-111-144" fill="none" stroke="#f8f5e9" stroke-width="39" stroke-linecap="round"/><path d="M85 305c-9-41-1-82 17-99" fill="none" stroke="#f2b982" stroke-width="27" stroke-linecap="round"/><circle cx="102" cy="203" r="18" fill="#f2b982"/>
+            <path d="M327 468c57-11 99-46 125-91" fill="none" stroke="#f8f5e9" stroke-width="35" stroke-linecap="round"/><path d="M446 377l33-26" fill="none" stroke="#f2b982" stroke-width="25" stroke-linecap="round"/><circle cx="486" cy="347" r="17" fill="#f2b982"/>
+            <path d="M66 393c20-8 51-3 71 17l-17 40c-30-5-53-17-68-35z" fill="#111d35" stroke="#17223a" stroke-width="6"/>
+          </g>
+          <g class="scene-girl" filter="url(#smallShadow)">
+            <path d="M1030 722c-25-136-28-238 20-303 39-53 116-58 169-17 65 51 72 162 61 320z" fill="#f9f5ee" stroke="#d8d5d4" stroke-width="7"/>
+            <path d="M1045 504c-31 30-47 104-48 181h255c-10-99-44-165-91-191z" fill="#e0dff5" opacity=".75"/>
+            <path d="M1116 676l-4 46M1213 676l7 46" stroke="#e6b58c" stroke-width="22" stroke-linecap="round"/><path d="M1090 720h-49M1215 720h51" stroke="#5c587b" stroke-width="24" stroke-linecap="round"/>
+            <path d="M1068 314c13-80 72-121 139-96 60 23 73 91 45 145-31 60-116 81-160 33-23-25-31-51-24-82z" fill="#f0bd96" stroke="#c47568" stroke-width="6"/>
+            <path d="M1049 345c-43-51-23-139 42-174 73-39 154 12 159 100-41-29-73-33-113-16-26 11-44 36-88 90z" fill="#eee9f2" stroke="#c4bad5" stroke-width="9"/>
+            <path d="M1076 254c43-53 106-54 153-10l17 58c-56-29-103-30-170 8z" fill="#f8f6fa"/>
+            <path d="M1102 338c18 15 37 15 53 0" fill="none" stroke="#b45162" stroke-width="7" stroke-linecap="round"/><path d="M1096 295l-13 0M1156 295l13 0" stroke="#2d3c55" stroke-width="8" stroke-linecap="round"/><circle cx="1090" cy="330" r="12" fill="#ee8d93" opacity=".6"/><circle cx="1167" cy="330" r="12" fill="#ee8d93" opacity=".6"/>
+            <path d="M1055 480c-58-4-97-43-116-91" fill="none" stroke="#f9f5ee" stroke-width="34" stroke-linecap="round"/><path d="M937 390c-31-27-47-62-43-101" fill="none" stroke="#f0bd96" stroke-width="25" stroke-linecap="round"/><path d="M894 289l-16-25M904 284l-5-31M917 288l8-29M928 298l19-22" stroke="#f0bd96" stroke-width="13" stroke-linecap="round"/>
+            <path d="M1192 474c31-6 61 8 80 33" fill="none" stroke="#f0bd96" stroke-width="25" stroke-linecap="round"/>
+            <path d="M1090 418l128 46-34 158-134-46z" fill="#49966e" stroke="#34724f" stroke-width="7"/><path d="M1103 447l91 33" stroke="#8fd19a" stroke-width="9" opacity=".8"/><path d="M1082 535l92 33" stroke="#2e704c" stroke-width="7" opacity=".6"/>
+            <path d="M1039 475c-14-50 6-87 51-111l42 28-51 100z" fill="#eee9f2" opacity=".95"/>
+          </g>
+          <g class="scene-flower-field" aria-hidden="true">
+            <path d="M0 660c160-48 255-26 384 28 162-66 296-37 417 5 153-54 315-67 479-2v29H0z" fill="#2d8e5f" opacity=".9"/>
+            <g stroke="#317d56" stroke-width="5" stroke-linecap="round"><path d="M55 720v-70M118 720v-62M366 720v-75M448 720v-57M767 720v-72M837 720v-55M1197 720v-74"/></g>
+            <g fill="#fff"><circle cx="55" cy="647" r="13"/><circle cx="43" cy="657" r="13"/><circle cx="67" cy="657" r="13"/><circle cx="55" cy="665" r="9"/></g><g fill="#ffd85b"><circle cx="118" cy="658" r="15"/><circle cx="104" cy="669" r="13"/><circle cx="132" cy="669" r="13"/><circle cx="118" cy="674" r="8"/></g><g fill="#f28a85"><circle cx="366" cy="642" r="14"/><circle cx="351" cy="654" r="13"/><circle cx="381" cy="654" r="13"/><circle cx="366" cy="660" r="8"/></g><g fill="#fff0ad"><circle cx="767" cy="648" r="15"/><circle cx="751" cy="660" r="13"/><circle cx="783" cy="660" r="13"/><circle cx="767" cy="667" r="8"/></g><g fill="#fff"><circle cx="1197" cy="646" r="14"/><circle cx="1182" cy="657" r="13"/><circle cx="1212" cy="657" r="13"/><circle cx="1197" cy="664" r="8"/></g>
+            <g fill="#e75c73"><circle cx="246" cy="694" r="16"/><circle cx="229" cy="706" r="13"/><circle cx="263" cy="706" r="13"/><circle cx="246" cy="712" r="8"/></g><g fill="#f4a33a"><circle cx="975" cy="690" r="16"/><circle cx="958" cy="702" r="13"/><circle cx="992" cy="702" r="13"/><circle cx="975" cy="708" r="8"/></g>
+          </g>
+        </svg>
+        <div class="welcome-theme-board"><span>Tema Kali Ini</span><strong class="arabic">المدرسة</strong><small>Lingkungan & Perlengkapan Sekolah</small></div>
+      </div>
+      <div class="welcome-copy">
+        <span class="eyebrow">Website game pembelajaran</span>
+        <div class="brand-arabic arabic">لَعِبٌ وَفِكْرَةٌ</div>
+        <div class="brand-latin">Laib Wa Fikrah</div>
+        <h1><span>Belajar Bahasa Arab</span><span> </span></h1>
+        <button class="btn btn-primary" data-start-app>Mulai Petualangan <span>→</span></button>
+        <div class="welcome-note"><b>✓</b><span>Tema Al-Madrasah · 4 keterampilan · evaluasi standar </span></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="appShell" class="app-shell hidden">
+    <header class="site-header">
+      <div class="header-inner">
+        <button class="brand-button" data-route="home" aria-label="Kembali ke beranda"><span class="brand-mark">ل</span><span><strong>Laib Wa Fikrah</strong><small>Main kuisnya, Kuasai mufrodatnya!</small></span></button>
+        <nav class="site-nav" aria-label="Navigasi utama">
+          <button data-route="home" class="active"><span class="nav-icon">⌂</span>Beranda</button><button data-route="materials"><span class="nav-icon">▤</span>Materi</button><button data-route="games"><span class="nav-icon">▶</span>Permainan</button><button data-route="progress"><span class="nav-icon">↗</span>Progres</button><button data-route="about"><span class="nav-icon">ⓘ</span>Tentang</button>
+        </nav>
+        <div class="header-actions"><div class="star-pill"><span class="star-icon">★</span><span id="headerStars">0 bintang</span></div><div class="profile" title="Siswa">S</div></div>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <section id="home" class="view active">
+        <div class="home-hero-layout">
+          <div class="home-hero-scene" aria-label="Tema lingkungan sekolah">
+            <img src="assets/app-background.jpg" alt="Dua siswa di lingkungan sekolah">
+            <div class="home-hero-shade"></div>
+            <div class="home-hero-content">
+              <span class="eyebrow"></span>
+              <h1>Bahasa Arab jadi lebih dekat.</h1>
+              <p>Kenali benda-benda di sekolah, dengarkan pelafalannya, pahami maknanya, lalu susun kalimat sederhana melalui aktivitas yang menyenangkan.</p>
+              <div class="home-hero-actions"><button class="btn home-adventure-btn" data-route="games">Mulai Petualangan <span>→</span></button><button class="btn home-material-btn" data-route="materials">Lihat mufradat</button></div>
+            </div>
+            <div class="home-theme-chip"><span>TEMA KALI INI</span><strong class="arabic">المدرسة</strong><small>Lingkungan Sekolah</small></div>
+          </div>
+          <aside class="home-goal-card">
+            <div class="goal-icon" aria-hidden="true">◎</div>
+            <span class="eyebrow">Arah belajar</span>
+            <h2>Tujuan Pembelajaran</h2>
+            <p>Media belajar Bahasa Arab interaktif untuk siapa saja   () pada tema lingkungan dan perlengkapan sekolah.</p>
+            <ul class="goal-list"><li><b>01</b> Mengenali 20 kosakata lingkungan & perlengkapan sekolah</li><li><b>02</b> Menyimak pelafalan & ungkapan pendek (Istima')</li><li><b>03</b> Memahami pola isim isyarah هٰذَا / هٰذِهِ & letak benda</li><li><b>04</b> Menyusun kalimat dasar sesuai kaidah </li></ul>
+          </aside>
+        </div>
+        <div class="stat-row"><div class="stat-card"><div class="stat-symbol">★</div><div><strong id="statStars">0</strong><span>Total bintang</span></div></div><div class="stat-card"><div class="stat-symbol">✓</div><div><strong id="statSolved">0</strong><span>Soal terjawab</span></div></div><div class="stat-card"><div class="stat-symbol">↗</div><div><strong id="statModes">0/4</strong><span>Mode dicoba</span></div></div></div>
+        <div class="section-title"><div><h2>Empat mode permainan</h2><p>Pilih aktivitas yang ingin kamu latih hari ini.</p></div><button class="text-button" data-route="games">Lihat semua →</button></div>
+        <div class="mode-grid"><article class="mode-card green"><div class="mode-icon">文</div><h3>Mufrodat</h3><p>Cocokkan gambar dengan kosakata Arab yang tepat.</p><button class="btn" data-start-mode="mufrodat">Mulai mode →</button></article><article class="mode-card blue"><div class="mode-icon">↔</div><h3>Terjemahan</h3><p>Pahami arti kata dan kalimat sederhana.</p><button class="btn" data-start-mode="translation">Mulai mode →</button></article><article class="mode-card orange"><div class="mode-icon">◉</div><h3>Istima'</h3><p>Dengarkan pelafalan dan pilih jawaban yang sesuai.</p><button class="btn" data-start-mode="listening">Mulai mode →</button></article><article class="mode-card purple"><div class="mode-icon">≡</div><h3>Susun Kalimat</h3><p>Ketuk ubin kata untuk membangun kalimat Arab.</p><button class="btn" data-start-mode="sentence">Mulai mode →</button></article></div>
+        <div class="section-title"><div><h2>Pilih tingkat tantangan</h2><p>Level mengubah jumlah bantuan dan kompleksitas soal, bukan tema.</p></div><button class="text-button" data-route="levels">Detail level →</button></div>
+        <div class="level-grid"><article class="level-card easy"><div class="level-top"><span>MUDAH</span><span>★</span></div><h3>Mulai dengan bantuan</h3><p>Mode kata 1 kata · Susun Kalimat 2 kata.</p><button class="btn" data-level="easy">Pilih level →</button></article><article class="level-card medium"><div class="level-top"><span>SEDANG</span><span>★★</span></div><h3>Tantang pemahaman</h3><p>Mode kata 2 kata · Susun Kalimat 3 kata.</p><button class="btn" data-level="medium">Pilih level →</button></article><article class="level-card hard"><div class="level-top"><span>SULIT</span><span>★★★</span></div><h3>Susun dengan percaya diri</h3><p>Mode kata 3 kata · Susun Kalimat 4 kata.</p><button class="btn" data-level="hard">Pilih level →</button></article></div>
+        <div class="tip-banner"><div><strong>Tips belajar hari ini</strong><p>Ulangi satu kosakata dalam empat mode agar maknanya lebih melekat.</p></div><button class="btn btn-yellow" data-route="materials">Buka materi</button></div>
+      </section>
+
+      <section id="materials" class="view">
+        <div class="page-heading"><div><h1>Materi mufradat</h1><p>20 kosakata inti tema <strong>Al-Madrasah</strong> untuk  . Disusun bertahap dari level Mudah, Sedang, hingga Sulit.</p></div><div class="arabic">الْمَدْرَسَةُ</div></div>
+        <div class="toolbar"><div class="search-box"><input id="vocabSearch" type="search" placeholder="Cari kata, transliterasi, atau arti..." aria-label="Cari kosakata"></div><button class="btn btn-soft" id="randomVocab">Kata acak</button></div>
+        <div class="material-filters" aria-label="Filter kategori materi"><button class="material-filter active" data-vocab-category="all">Semua Kategori <b>20</b></button><button class="material-filter" data-vocab-category="bangunan">Bangunan <b>4</b></button><button class="material-filter" data-vocab-category="orang">Warga Madrasah <b>4</b></button><button class="material-filter" data-vocab-category="alat">Alat Belajar <b>9</b></button><button class="material-filter" data-vocab-category="lingkungan">Lingkungan <b>3</b></button></div>
+        <div class="material-filters" aria-label="Filter level materi" style="margin-top:-6px"><button class="material-filter level-pill active" data-vocab-level="all">Semua Level <b>20</b></button><button class="material-filter level-pill" data-vocab-level="easy">Mudah · 6 Kata</button><button class="material-filter level-pill" data-vocab-level="medium">Sedang · 7 Kata</button><button class="material-filter level-pill" data-vocab-level="hard">Sulit · 7 Kata</button></div>
+        <div id="vocabGrid" class="vocab-grid"></div>
+        <div class="tip-banner"><div><strong>Catatan materi</strong><p>Harakat, transliterasi, arti, contoh kalimat, dan audio perlu divalidasi guru Bahasa Arab sebelum digunakan di kelas.</p></div><button class="btn btn-primary" data-route="games">Latihan sekarang</button></div>
+      </section>
+
+      <section id="levels" class="view">
+        <div class="level-select-shell">
+          <div class="level-select-heading"><div><span class="eyebrow">LANGKAH 02 · PERJALANAN BELAJAR</span><h1 class="level-select-title">Pilih Tingkat Kesulitan</h1><p>Sesuaikan tantangan dengan kemampuanmu. Kamu bisa naik level kapan saja.</p></div><div class="arabic level-arabic">مُسْتَوًى</div></div>
+          <div class="level-stage">
+            <div class="level-cloud cloud-a"></div><div class="level-cloud cloud-b"></div><div class="level-ground"></div>
+            <img class="level-character boy" src="assets/student-boy-cutout.png" alt="Siswa laki-laki">
+            <div class="level-page-grid">
+              <article class="level-page-card easy"><div class="level-card-top"><span class="level-number">LEVEL 01</span><span class="level-stars">★</span></div><h2>Mudah</h2><p>Mulai dengan bantuan visual dan pilihan jawaban yang jelas.</p><ul><li>Mode kata: 1 kata</li><li>Susun Kalimat: 2 kata</li><li>Audio dapat diputar ulang</li></ul><button class="btn btn-green" data-level="easy">Pilih Level <span>→</span></button></article>
+              <article class="level-page-card medium"><div class="level-card-top"><span class="level-number">LEVEL 02</span><span class="level-stars">★★</span></div><h2>Sedang</h2><p>Kurangi bantuan dan uji pemahaman dalam konteks yang lebih beragam.</p><ul><li>Mode kata: 2 kata</li><li>Susun Kalimat: 3 kata</li><li>Petunjuk mulai dikurangi</li></ul><button class="btn btn-yellow" data-level="medium">Pilih Level <span>→</span></button></article>
+              <article class="level-page-card hard"><div class="level-card-top"><span class="level-number">LEVEL 03</span><span class="level-stars">★★★</span></div><h2>Sulit</h2><p>Susun kalimat dan pahami audio dengan bantuan minimal.</p><ul><li>Mode kata: 3 kata</li><li>Susun Kalimat: 4 kata</li><li>Tantangan lebih kompleks</li></ul><button class="btn btn-purple" data-level="hard">Pilih Level <span>→</span></button></article>
+            </div>
+            <img class="level-character girl" src="assets/student-girl-cutout.png" alt="Siswi berhijab">
+          </div>
+          <div class="level-bottom-note"><span class="level-note-icon">★</span><div><strong>Satu tema, tiga tingkat tantangan</strong><p>Semua level tetap menggunakan tema <b>Al-Madrasah</b>. Pilih yang paling nyaman untuk memulai.</p></div><button class="btn btn-ghost" data-route="games">Lihat permainan →</button></div>
+        </div>
+      </section>
+
+      <section id="games" class="view">
+        <div class="page-heading"><div><h1>Pilih permainan</h1><p>Setiap mode melatih keterampilan berbeda. Pilih level, lalu mulai permainan.</p></div><div class="arabic">لَعِبٌ وَفِكْرَةٌ</div></div>
+        <div id="gamePicker" class="game-picker-layout"><aside class="filter-panel"><h3>Tingkat tantangan</h3><button class="level-choice active" data-level-choice="easy">Mudah <span>★</span></button><button class="level-choice" data-level-choice="medium">Sedang <span>★★</span></button><button class="level-choice" data-level-choice="hard">Sulit <span>★★★</span></button><p id="selectedLevelText">Level mudah memberi lebih banyak bantuan visual dan audio.</p></aside><div class="game-cards"><article class="game-card green"><div class="game-icon">文</div><h3>Mufrodat</h3><p>Cocokkan kata Arab dengan gambar atau artinya.</p><button class="btn" data-start-mode="mufrodat">Mulai →</button></article><article class="game-card blue"><div class="game-icon">↔</div><h3>Terjemahan</h3><p>Uji kemampuan menerjemahkan kosakata.</p><button class="btn" data-start-mode="translation">Mulai →</button></article><article class="game-card orange"><div class="game-icon">◉</div><h3>Istima'</h3><p>Dengarkan kata Arab, lalu pilih maknanya.</p><button class="btn" data-start-mode="listening">Mulai →</button></article><article class="game-card purple"><div class="game-icon">≡</div><h3>Susun Kalimat</h3><p>Ketuk ubin kata untuk menyusun kalimat sederhana.</p><button class="btn" data-start-mode="sentence">Mulai →</button></article></div></div>
+        <div id="gameSession" class="game-session hidden"></div>
+      </section>
+
+      <section id="result" class="view">
+        <div class="page-heading"><div><h1>Hasil permainan</h1><p>Lihat perkembanganmu dan tentukan langkah berikutnya.</p></div><div class="arabic">نَتِيجَةٌ</div></div>
+        <div id="resultContent"></div>
+      </section>
+
+      <section id="about" class="view">
+        <div class="page-heading"><div><h1>Tentang Laib Wa Fikrah</h1><p>Ruang belajar Bahasa Arab yang menggabungkan materi, permainan, dan progres dalam satu perjalanan.</p></div><div class="arabic">فِكْرَةٌ</div></div>
+        <div class="about-layout">
+          <div class="about-card about-main-card"><span class="eyebrow">Main kuisnya, Kuasai mufrodatnya!</span><h2>Bahasa Arab jadi lebih dekat.</h2><p>Laib Wa Fikrah dirancang untuk membantu siapa saja mengenali kosakata dan struktur kalimat Bahasa Arab pada tema lingkungan dan perlengkapan sekolah dengan cara yang menyenangkan.</p><div class="about-pill-row"><span>Kurikulum </span><span>10 Soal per Level</span><span>Evaluasi Kriteria Resmi</span></div></div>
+          <div class="about-card"><div class="about-icon">★</div><h3>Empat model permainan</h3><p>Mufrodat, terjemahan, istima’, dan susun kalimat dilatih secara bertahap.</p></div>
+          <div class="about-card"><div class="about-icon green">✓</div><h3>Progres tersimpan</h3><p>Skor, bintang, favorit, dan pencapaian tersimpan otomatis di browser.</p></div>
+        </div>
+      </section>
+
+      <section id="progress" class="view">
+        <div class="page-heading"><div><h1>Progres belajar</h1><p>Perkembangan tersimpan otomatis di browser ini menggunakan penyimpanan lokal.</p></div><div class="arabic">تَقَدُّمٌ</div></div>
+        <div class="progress-cards"><div class="progress-card"><div class="progress-symbol">★</div><strong id="progressStars">0</strong><span>Total bintang</span></div><div class="progress-card"><div class="progress-symbol">✓</div><strong id="progressSolved">0</strong><span>Soal terjawab</span></div><div class="progress-card"><div class="progress-symbol">↗</div><strong id="progressBest">—</strong><span>Skor terbaik</span></div></div>
+        <div class="progress-layout"><div class="panel"><h3>Penguasaan setiap mode</h3><div class="bar-row"><div class="bar-label"><span>Mufrodat</span><span id="barMufrodatText">Belum dicoba</span></div><div class="bar"><i id="barMufrodat" style="width:0%"></i></div></div><div class="bar-row"><div class="bar-label"><span>Terjemahan</span><span id="barTranslationText">Belum dicoba</span></div><div class="bar"><i id="barTranslation" style="width:0%"></i></div></div><div class="bar-row"><div class="bar-label"><span>Istima'</span><span id="barListeningText">Belum dicoba</span></div><div class="bar"><i id="barListening" style="width:0%"></i></div></div><div class="bar-row"><div class="bar-label"><span>Susun Kalimat</span><span id="barSentenceText">Belum dicoba</span></div><div class="bar"><i id="barSentence" style="width:0%"></i></div></div></div><div class="panel"><h3>Pencapaian</h3><div class="achievement-grid"><div class="achievement" id="achievementFirst"><b>☆</b>Langkah pertama</div><div class="achievement" id="achievementFive"><b>✦</b>5 soal selesai</div><div class="achievement" id="achievementMode"><b>◆</b>Semua mode</div><div class="achievement" id="achievementPerfect"><b>♛</b>Skor sempurna</div></div><button class="btn btn-ghost" id="resetProgress" style="margin-top:18px">Reset progres</button></div></div>
+        <div class="tip-banner"><div><strong>Lanjutkan perjalananmu</strong><p>Ulangi mode yang masih kosong, lalu naikkan level setelah semakin percaya diri.</p></div><button class="btn btn-primary" data-route="games">Mulai latihan</button></div>
+      </section>
+    </main>
+    <footer>
+      <span>Laib Wa Fikrah · Media Pembelajaran Bahasa Arab  .<br><small style="display: block; opacity: 0.8; font-size: 0.8em; margin-top: 5px;">Created by Ananda Rona Rahman</small></span>
+      <nav class="footer-socials" aria-label="Media sosial Laib Wa Fikrah">
+        <a class="footer-social-link" href="https://www.tiktok.com/@latta6342?_r=1&_t=ZS-99nerOxPTtc" target="_blank" rel="noopener noreferrer" aria-label="TikTok LAFI" title="TikTok · LAFI">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 3c.35 2.3 1.65 3.7 4 4v3.05c-1.55.05-2.9-.4-4-1.2v6.35a5.8 5.8 0 1 1-5-5.75v3.13a2.7 2.7 0 1 0 1.9 2.62V3h3.1Z"/></svg>
+          <span>LAFI</span>
+        </a>
+        <a class="footer-social-link" href="https://www.instagram.com/laibwafikrah?stkn=bW41NmNmOWxscmRk" target="_blank" rel="noopener noreferrer" aria-label="Instagram laibwafikrah" title="Instagram · laibwafikrah">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7Zm5 3.5A3.5 3.5 0 1 1 8.5 12 3.5 3.5 0 0 1 12 8.5Zm0 2A1.5 1.5 0 1 0 13.5 12 1.5 1.5 0 0 0 12 10.5ZM17.5 7a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 17.5 7Z"/></svg>
+          <span>laibwafikrah</span>
+        </a>
+        <a class="footer-social-link" href="https://www.facebook.com/profile.php?id=61594595784497" target="_blank" rel="noopener noreferrer" aria-label="Facebook laib wafikrah" title="Facebook · laib wafikrah">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4.5c-.52-.08-1.6-.2-2.9-.2-2.87 0-4.84 1.75-4.84 4.98V12H6v3.9h3.26V24h4V15.9h3.34l.53-3.9h-3.87V9.7c0-1.13.3-1.7 1.74-1.7Z"/></svg>
+          <span>laib wafikrah</span>
+        </a>
+        <a class="footer-social-link" href="https://whatsapp.com/channel/0029VbDLCsYDDmFXkgEwLr09" target="_blank" rel="noopener noreferrer" aria-label="Saluran WhatsApp Laib Wa Fikrah" title="WhatsApp · Laib Wa Fikrah">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.66 15L2 22l5.16-1.3A10 10 0 1 0 12 2Zm0 2a8 8 0 0 1 6.93 12L18.3 17.1l-1.2.3A8 8 0 1 1 12 4Zm-3 3.5c.25 0 .5.02.7.48l.7 1.65c.1.25.1.48-.08.72l-.45.58c-.15.2-.3.33-.13.62a7.1 7.1 0 0 0 3.47 3.1c.3.14.47.12.65-.08l.63-.76c.2-.25.4-.2.67-.1l1.58.75c.27.13.45.2.52.38.07.18.07 1.05-.25 1.35-.32.3-1.04.52-1.73.52-.65 0-1.48-.23-2.55-.7-1.1-.48-2.1-1.2-2.95-2.08-.95-.98-1.6-2.04-1.9-2.7-.3-.66-.62-1.7-.62-2.5 0-.8.42-1.5.8-1.5H9Z"/></svg>
+          <span>laib wafikrah</span>
+        </a>
+        <a class="footer-social-link" href="https://t.me/laibwataalam3" target="_blank" rel="noopener noreferrer" aria-label="Saluran Telegram La’ib wa Ta’allam" title="Telegram · La’ib wa Ta’allam">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 3.2 18.2 20c-.25 1.18-.9 1.47-1.82.92l-5.02-3.7-2.42 2.33c-.27.27-.5.5-1.02.5l.37-5.1 9.28-8.38c.4-.37-.09-.57-.62-.2L5.47 13.7.53 12.15c-1.08-.34-1.1-1.08.23-1.6L20.06 2.9c.9-.33 1.68.2 1.44.3Z"/></svg>
+          <span>laib wafikrah</span>
+        </a>
+      </nav>
+    </footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    
+    function renderVocabImage(item, className = 'quiz-img') {
+      return `<img src="${item.img || item.svg || ''}" alt="${item.id}" class="${className}" onerror="this.src='${item.svg || item.img || ''}';">`;
+    }
+
+    const vocabulary = [
+      // Level Mudah (6 kata dasar)
+      {key:'sekolah', ar:'مَدْرَسَةٌ', tr:'madrasatun', id:'sekolah', visual:'⌂', img:'assets/vocab/sekolah.jpg', svg:'assets/vocab/sekolah.jpg', category:'bangunan', level:'easy', example:'هٰذِهِ مَدْرَسَةٌ', exampleId:'Ini sekolah.'},
+      {key:'kelas', ar:'فَصْلٌ', tr:'faṣlun', id:'ruang kelas', visual:'▦', img:'assets/vocab/kelas.jpg', svg:'assets/vocab/kelas.jpg', category:'bangunan', level:'easy', example:'هٰذَا فَصْلٌ', exampleId:'Ini ruang kelas.'},
+      {key:'kitab', ar:'كِتَابٌ', tr:'kitābun', id:'buku', visual:'▤', img:'assets/vocab/kitab.jpg', svg:'assets/vocab/kitab.jpg', category:'alat', level:'easy', example:'هٰذَا كِتَابٌ', exampleId:'Ini buku.'},
+      {key:'qalam', ar:'قَلَمٌ', tr:'qalamun', id:'pena', visual:'╱', img:'assets/vocab/pena.jpg', svg:'assets/vocab/qalam.svg', category:'alat', level:'easy', example:'هٰذَا قَلَمٌ', exampleId:'Ini pena.'},
+      {key:'tas', ar:'حَقِيبَةٌ', tr:'ḥaqībatun', id:'tas', visual:'▢', img:'assets/vocab/tas.jpg', svg:'assets/vocab/tas.jpg', category:'alat', level:'easy', example:'هٰذِهِ حَقِيبَةٌ', exampleId:'Ini tas.'},
+      {key:'pintu', ar:'بَابٌ', tr:'bābun', id:'pintu', visual:'▯', img:'assets/vocab/pintu.jpg', svg:'assets/vocab/pintu.svg', category:'lingkungan', level:'easy', example:'هٰذَا بَابٌ', exampleId:'Ini pintu.'},
+
+      // Level Sedang (7 perlengkapan kelas & isim isyarah)
+      {key:'buku_tulis', ar:'دَفْتَرٌ', tr:'daftarun', id:'buku tulis', visual:'▥', img:'assets/vocab/buku-tulis.jpg', svg:'assets/vocab/buku_tulis.jpg', category:'alat', level:'medium', example:'هٰذَا دَفْتَرٌ', exampleId:'Ini buku tulis.'},
+      {key:'penghapus', ar:'مِمْسَحَةٌ', tr:'mimsahatun', id:'penghapus', visual:'▰', img:'assets/vocab/penghapus.jpg', svg:'assets/vocab/penghapus.jpg', category:'alat', level:'medium', example:'هٰذِهِ مِمْسَحَةٌ', exampleId:'Ini penghapus.'},
+      {key:'penggaris', ar:'مِسْطَرَةٌ', tr:'misṭaratun', id:'penggaris', visual:'▭', img:'assets/vocab/penggaris.jpg', svg:'assets/vocab/penggaris.svg', category:'alat', level:'medium', example:'هٰذِهِ مِسْطَرَةٌ', exampleId:'Ini penggaris.'},
+      {key:'kursi', ar:'كُرْسِيٌّ', tr:'kursiyyun', id:'kursi', visual:'⌑', img:'assets/vocab/kursi.jpg', svg:'assets/vocab/kursi.svg', category:'alat', level:'medium', example:'هٰذَا كُرْسِيٌّ', exampleId:'Ini kursi.'},
+      {key:'meja', ar:'مَكْتَبٌ', tr:'maktabun', id:'meja', visual:'▱', img:'assets/vocab/meja.jpg', svg:'assets/vocab/meja.svg', category:'alat', level:'medium', example:'هٰذَا مَكْتَبٌ', exampleId:'Ini meja.'},
+      {key:'papan_tulis', ar:'سَبُّورَةٌ', tr:'sabbūratun', id:'papan tulis', visual:'▣', img:'assets/vocab/papan-tulis.jpg', svg:'assets/vocab/papan_tulis.svg', category:'alat', level:'medium', example:'هٰذِهِ سَبُّورَةٌ', exampleId:'Ini papan tulis.'},
+      {key:'jendela', ar:'نَافِذَةٌ', tr:'nāfidhatun', id:'jendela', visual:'⊞', img:'assets/vocab/jendela.png', svg:'assets/vocab/jendela.svg', category:'lingkungan', level:'medium', example:'هٰذِهِ نَافِذَةٌ', exampleId:'Ini jendela.'},
+
+      // Level Sulit (7 warga madrasah & tempat)
+      {key:'guru_laki', ar:'مُعَلِّمٌ', tr:"mu'allimun", id:'guru laki-laki', visual:'♙', img:'assets/vocab/guru-laki.png', svg:'assets/vocab/guru_laki.svg', category:'orang', level:'hard', example:'هٰذَا مُعَلِّمٌ', exampleId:'Ini guru laki-laki.'},
+      {key:'guru_perempuan', ar:'مُعَلِّمَةٌ', tr:"mu'allimatun", id:'guru perempuan', visual:'♙', img:'assets/vocab/guru-perempuan-3d.png', svg:'assets/vocab/guru_perempuan.svg', category:'orang', level:'hard', example:'هٰذِهِ مُعَلِّمَةٌ', exampleId:'Ini guru perempuan.'},
+      {key:'siswa_laki', ar:'طَالِبٌ', tr:'ṭālibun', id:'siswa laki-laki', visual:'♟', img:'assets/vocab/siswa-laki.png', svg:'assets/vocab/siswa_laki.svg', category:'orang', level:'hard', example:'هٰذَا طَالِبٌ', exampleId:'Ini siswa laki-laki.'},
+      {key:'siswa_perempuan', ar:'طَالِبَةٌ', tr:'ṭālibatun', id:'siswa perempuan', visual:'♟', img:'assets/vocab/siswa-perempuan.png', svg:'assets/vocab/siswa_perempuan.svg', category:'orang', level:'hard', example:'هٰذِهِ طَالِبَةٌ', exampleId:'Ini siswa perempuan.'},
+      {key:'perpustakaan', ar:'مَكْتَبَةٌ', tr:'maktabatun', id:'perpustakaan', visual:'▤', img:'assets/vocab/perpustakaan.jpg', svg:'assets/vocab/perpustakaan.jpg', category:'bangunan', level:'hard', example:'هٰذِهِ مَكْتَبَةٌ', exampleId:'Ini perpustakaan.'},
+      {key:'lapangan', ar:'مَلْعَبٌ', tr:"mal'abun", id:'lapangan bermain', visual:'◇', img:'assets/vocab/lapangan.jpg', svg:'assets/vocab/lapangan.svg', category:'lingkungan', level:'hard', example:'هٰذَا مَلْعَبٌ', exampleId:'Ini lapangan bermain.'},
+      {key:'masjid', ar:'مَسْجِدٌ', tr:'masjidun', id:'masjid', visual:'⌂', img:'assets/vocab/masjid.jpg', svg:'assets/vocab/masjid.svg', category:'bangunan', level:'hard', example:'هٰذَا مَسْجِدٌ', exampleId:'Ini masjid.'}
+    ];
+
+    const sentenceBank = {
+      easy: [
+        {prompt:'Ini buku.',words:['هٰذَا','كِتَابٌ'],answer:['هٰذَا','كِتَابٌ']},
+        {prompt:'Ini tas.',words:['هٰذِهِ','حَقِيبَةٌ'],answer:['هٰذِهِ','حَقِيبَةٌ']},
+        {prompt:'Ini pena.',words:['هٰذَا','قَلَمٌ'],answer:['هٰذَا','قَلَمٌ']},
+        {prompt:'Ini pintu.',words:['هٰذَا','بَابٌ'],answer:['هٰذَا','بَابٌ']},
+        {prompt:'Ini ruang kelas.',words:['هٰذَا','فَصْلٌ'],answer:['هٰذَا','فَصْلٌ']},
+        {prompt:'Ini sekolah.',words:['هٰذِهِ','مَدْرَسَةٌ'],answer:['هٰذِهِ','مَدْرَسَةٌ']},
+        {prompt:'Ini buku tulis.',words:['هٰذَا','دَفْتَرٌ'],answer:['هٰذَا','دَفْتَرٌ']},
+        {prompt:'Ini penghapus.',words:['هٰذِهِ','مِمْسَحَةٌ'],answer:['هٰذِهِ','مِمْسَحَةٌ']},
+        {prompt:'Ini kursi.',words:['هٰذَا','كُرْسِيٌّ'],answer:['هٰذَا','كُرْسِيٌّ']},
+        {prompt:'Ini meja.',words:['هٰذَا','مَكْتَبٌ'],answer:['هٰذَا','مَكْتَبٌ']}
+      ],
+      medium: [
+        {prompt:'Buku itu di atas meja.',words:['الْكِتَابُ','عَلَى','الْمَكْتَبِ'],answer:['الْكِتَابُ','عَلَى','الْمَكْتَبِ']},
+        {prompt:'Buku tulis di atas meja.',words:['الدَّفْتَرُ','عَلَى','الْمَكْتَبِ'],answer:['الدَّفْتَرُ','عَلَى','الْمَكْتَبِ']},
+        {prompt:'Pena di dalam tas.',words:['الْقَلَمُ','فِي','الْحَقِيبَةِ'],answer:['الْقَلَمُ','فِي','الْحَقِيبَةِ']},
+        {prompt:'Guru di dalam kelas.',words:['الْمُعَلِّمُ','فِي','الْفَصْلِ'],answer:['الْمُعَلِّمُ','فِي','الْفَصْلِ']},
+        {prompt:'Siswa di madrasah.',words:['الطَّالِبُ','فِي','الْمَدْرَسَةِ'],answer:['الطَّالِبُ','فِي','الْمَدْرَسَةِ']},
+        {prompt:'Pintu di depan kelas.',words:['الْبَابُ','أَمَامَ','الْفَصْلِ'],answer:['الْبَابُ','أَمَامَ','الْفَصْلِ']},
+        {prompt:'Kursi di dalam kelas.',words:['الْكُرْسِيُّ','فِي','الْفَصْلِ'],answer:['الْكُرْسِيُّ','فِي','الْفَصْلِ']},
+        {prompt:'Papan di dalam kelas.',words:['السَّبُّورَةُ','فِي','الْفَصْلِ'],answer:['السَّبُّورَةُ','فِي','الْفَصْلِ']},
+        {prompt:'Jendela di dalam kelas.',words:['النَّافِذَةُ','فِي','الْفَصْلِ'],answer:['النَّافِذَةُ','فِي','الْفَصْلِ']},
+        {prompt:'Penggaris bersama pena.',words:['الْمِسْطَرَةُ','مَعَ','الْقَلَمِ'],answer:['الْمِسْطَرَةُ','مَعَ','الْقَلَمِ']}
+      ],
+      hard: [
+        {prompt:'Buku baru di atas meja.',words:['الْكِتَابُ','الْجَدِيدُ','عَلَى','الْمَكْتَبِ'],answer:['الْكِتَابُ','الْجَدِيدُ','عَلَى','الْمَكْتَبِ']},
+        {prompt:'Buku tulis baru di tas.',words:['الدَّفْتَرُ','الْجَدِيدُ','فِي','الْحَقِيبَةِ'],answer:['الدَّفْتَرُ','الْجَدِيدُ','فِي','الْحَقِيبَةِ']},
+        {prompt:'Guru baru di dalam kelas.',words:['الْمُعَلِّمُ','الْجَدِيدُ','فِي','الْفَصْلِ'],answer:['الْمُعَلِّمُ','الْجَدِيدُ','فِي','الْفَصْلِ']},
+        {prompt:'Siswa rajin di madrasah.',words:['الطَّالِبُ','الْمُجْتَهِدُ','فِي','الْمَدْرَسَةِ'],answer:['الطَّالِبُ','الْمُجْتَهِدُ','فِي','الْمَدْرَسَةِ']},
+        {prompt:'Guru perempuan di perpustakaan.',words:['الْمُعَلِّمَةُ','الْجَدِيدَةُ','فِي','الْمَكْتَبَةِ'],answer:['الْمُعَلِّمَةُ','الْجَدِيدَةُ','فِي','الْمَكْتَبَةِ']},
+        {prompt:'Siswi rajin di masjid.',words:['الطَّالِبَةُ','الْمُجْتَهِدَةُ','فِي','الْمَسْجِدِ'],answer:['الطَّالِبَةُ','الْمُجْتَهِدَةُ','فِي','الْمَسْجِدِ']},
+        {prompt:'Buku dan tas di meja.',words:['الْكِتَابُ','وَالْحَقِيبَةُ','عَلَى','الْمَكْتَبِ'],answer:['الْكِتَابُ','وَالْحَقِيبَةُ','عَلَى','الْمَكْتَبِ']},
+        {prompt:'Pena dan penggaris di tas.',words:['الْقَلَمُ','وَالْمِسْطَرَةُ','فِي','الْحَقِيبَةِ'],answer:['الْقَلَمُ','وَالْمِسْطَرَةُ','فِي','الْحَقِيبَةِ']},
+        {prompt:'Perpustakaan besar di madrasah.',words:['الْمَكْتَبَةُ','الْكَبِيرَةُ','فِي','الْمَدْرَسَةِ'],answer:['الْمَكْتَبَةُ','الْكَبِيرَةُ','فِي','الْمَدْرَسَةِ']},
+        {prompt:'Siswa menulis di buku tulis.',words:['الطَّالِبُ','يَكْتُبُ','فِي','الدَّفْتَرِ'],answer:['الطَّالِبُ','يَكْتُبُ','فِي','الدَّفْتَرِ']}
+      ]
+    };
+
+    const wordPhraseBank = {
+      medium: [
+        {prompt:'Ini buku tulis.',answer:['هٰذَا','دَفْتَرٌ']},
+        {prompt:'Ini penghapus.',answer:['هٰذِهِ','مِمْسَحَةٌ']},
+        {prompt:'Ini papan tulis.',answer:['هٰذِهِ','سَبُّورَةٌ']},
+        {prompt:'Ini penggaris.',answer:['هٰذِهِ','مِسْطَرَةٌ']},
+        {prompt:'Ini kursi.',answer:['هٰذَا','كُرْسِيٌّ']},
+        {prompt:'Ini meja.',answer:['هٰذَا','مَكْتَبٌ']},
+        {prompt:'Ini jendela.',answer:['هٰذِهِ','نَافِذَةٌ']},
+        {prompt:'Buku itu.',answer:['الْكِتَابُ','هُنَا']},
+        {prompt:'Buku tulis.',answer:['الدَّفْتَرُ','الْجَدِيدُ']},
+        {prompt:'Penggaris dan penghapus.',answer:['مِسْطَرَةٌ','وَمِمْسَحَةٌ']}
+      ],
+      hard: [
+        {prompt:'Buku itu di atas meja.',answer:['الْكِتَابُ','عَلَى','الْمَكْتَبِ']},
+        {prompt:'Guru di dalam kelas.',answer:['الْمُعَلِّمُ','فِي','الْفَصْلِ']},
+        {prompt:'Siswa di dalam madrasah.',answer:['الطَّالِبُ','فِي','الْمَدْرَسَةِ']},
+        {prompt:'Guru perempuan di perpustakaan.',answer:['الْمُعَلِّمَةُ','فِي','الْمَكْتَبَةِ']},
+        {prompt:'Siswa di lapangan bermain.',answer:['الطَّالِبُ','فِي','الْمَلْعَبِ']},
+        {prompt:'Siswa perempuan di masjid.',answer:['الطَّالِبَةُ','فِي','الْمَسْجِدِ']},
+        {prompt:'Buku dan tas bersama.',answer:['الْكِتَابُ','وَالْحَقِيبَةُ','مَعًا']},
+        {prompt:'Guru berada di kelas.',answer:['الْمُعَلِّمُ','مَوْجُودٌ','فِي']},
+        {prompt:'Guru perempuan di sini.',answer:['الْمُعَلِّمَةُ','هُنَا','الآنَ']},
+        {prompt:'Perpustakaan di madrasah.',answer:['الْمَكْتَبَةُ','فِي','الْمَدْرَسَةِ']}
+      ]
+    };
+
+    const modeNames = {mufrodat:'Mufrodat',translation:'Terjemahan',listening:"Istima'",sentence:'Susun Kalimat'};
+    const levelCopy = {
+      easy:'Level mudah: Mode kata 1 kata; Susun Kalimat 2 kata dengan bantuan visual dan audio.',
+      medium:'Level sedang: Mode kata 2 kata; Susun Kalimat 3 kata dengan petunjuk yang mulai dikurangi.',
+      hard:'Level sulit: Mode kata 3 kata; Susun Kalimat 4 kata tentang warga madrasah, tempat, dan letak benda.'
+    };
+    const $ = s => document.querySelector(s);
+    const $$ = s => [...document.querySelectorAll(s)];
+    const createDefaultStats = () => ({stars:0,solved:0,best:0,modes:{mufrodat:0,translation:0,listening:0,sentence:0},favorites:[],history:[],levels:{easy:{completed:false,best:0},medium:{unlocked:false,completed:false,best:0},hard:{unlocked:false,completed:false,best:0}}});
+    let stats = JSON.parse(localStorage.getItem('laibStatsV2') || 'null') || createDefaultStats();
+    stats.levels = stats.levels || {};
+    stats.levels.easy = {...{completed:false,best:0},...(stats.levels.easy||{})};
+    stats.levels.medium = {...{unlocked:false,completed:false,best:0},...(stats.levels.medium||{})};
+    stats.levels.hard = {...{unlocked:false,completed:false,best:0},...(stats.levels.hard||{})};
+    let state = {level:'easy',mode:null,question:0,score:0,answered:false,selected:[],words:[],vocabCategory:'all',vocabLevel:'all'};
+    let lastResult = {mode:'mufrodat',score:0,total:10,pct:0,level:'easy'};
+
+    function isLevelUnlocked(level){
+      if(level==='easy') return true;
+      if(level==='medium') return Boolean(stats.levels.easy?.completed && stats.levels.easy?.best >= 90);
+      if(level==='hard') return Boolean(stats.levels.medium?.completed && stats.levels.medium?.best >= 90);
+      return false;
+    }
+    function levelGateMessage(level='medium'){
+      if(level==='hard') return 'Selesaikan Level sedang dan raih minimal 90 poin untuk membuka Level sulit.';
+      return 'Selesaikan 10 soal Level mudah dan raih minimal 90 poin untuk membuka Level sedang.';
+    }
+    function updateLevelLockUI(){
+      $$('[data-level], [data-level-choice]').forEach(button=>{
+        const level=button.dataset.level || button.dataset.levelChoice;
+        const locked=!isLevelUnlocked(level);
+        button.classList.toggle('locked',locked);
+        button.disabled = locked;
+        button.setAttribute('aria-disabled',locked?'true':'false');
+        if(locked) button.title=levelGateMessage(level);
+        else button.removeAttribute('title');
+      });
+    }
+    function saveStats(){ localStorage.setItem('laibStatsV2',JSON.stringify(stats)); updateStatsUI(); }
+    function updateStatsUI(){
+      const modesDone=Object.values(stats.modes).filter(Boolean).length;
+      ['headerStars','statStars','progressStars'].forEach(id=>{const el=$('#'+id);if(el)el.textContent=id==='headerStars'?`${stats.stars} bintang`:stats.stars;});
+      ['statSolved','progressSolved'].forEach(id=>{const el=$('#'+id);if(el)el.textContent=stats.solved;});
+      const m=$('#statModes');if(m)m.textContent=`${modesDone}/4`;
+      const best=$('#progressBest');if(best)best.textContent=stats.best?`${stats.best}%`:'—';
+      Object.keys(modeNames).forEach(key=>{const cap=key[0].toUpperCase()+key.slice(1),bar=$('#bar'+cap),txt=$('#bar'+cap+'Text'),v=stats.modes[key]||0;if(bar)bar.style.width=v+'%';if(txt)txt.textContent=v?`${v}% benar`:'Belum dicoba';});
+      const first=$('#achievementFirst'),five=$('#achievementFive'),mode=$('#achievementMode'),perfect=$('#achievementPerfect');
+      if(first)first.classList.toggle('unlocked',stats.solved>0); if(five)five.classList.toggle('unlocked',stats.solved>=10); if(mode)mode.classList.toggle('unlocked',modesDone===4); if(perfect)perfect.classList.toggle('unlocked',stats.best===100);
+    }
+    function showToast(message){const el=$('#toast');el.textContent=message;el.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.remove('show'),2400);}
+    function navigate(route){
+      if(route==='welcome'){ $('#appShell').classList.add('hidden'); $('#welcomeScreen').classList.remove('hidden'); return; }
+      $('#welcomeScreen').classList.add('hidden'); $('#appShell').classList.remove('hidden'); if(route==='games') updateLevelLockUI(); if(route==='games') updateLevelLockUI();
+      $$('.view').forEach(v=>v.classList.toggle('active',v.id===route)); $$('.site-nav button').forEach(b=>b.classList.toggle('active',b.dataset.route===route));
+      if(route==='materials')renderVocab($('#vocabSearch')?.value||''); if(route==='progress')updateStatsUI(); window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function shuffle(list){return [...list].sort(()=>Math.random()-.5);}
+    function speak(text){if(!('speechSynthesis' in window)){showToast('Audio tidak tersedia di browser ini.');return;}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ar-SA';u.rate=.78;speechSynthesis.speak(u);}
+
+    let soundContext=null;
+    function getSoundContext(){
+      const AudioCtor=window.AudioContext||window.webkitAudioContext;
+      if(!AudioCtor)return null;
+      if(!soundContext) soundContext=new AudioCtor();
+      if(soundContext.state==='suspended') soundContext.resume();
+      return soundContext;
+    }
+    function playTone(ctx,frequency,duration,type='sine',volume=.045,delay=0){
+      const start=ctx.currentTime+delay;
+      const oscillator=ctx.createOscillator();
+      const gain=ctx.createGain();
+      oscillator.type=type;
+      oscillator.frequency.setValueAtTime(frequency,start);
+      gain.gain.setValueAtTime(.0001,start);
+      gain.gain.linearRampToValueAtTime(volume,start+.012);
+      gain.gain.exponentialRampToValueAtTime(.0001,start+duration);
+      oscillator.connect(gain).connect(ctx.destination);
+      oscillator.start(start);
+      oscillator.stop(start+duration+.025);
+    }
+    function playGameSound(kind='click'){
+      const ctx=getSoundContext();
+      if(!ctx)return;
+      const patterns={
+        correct:[['sine',660,.10,.045,0],['sine',880,.16,.05,.10]],
+        wrong:[['square',220,.12,.035,0],['square',155,.18,.03,.12]],
+        click:[['triangle',470,.065,.028,0]],
+        navigate:[['triangle',392,.07,.025,0],['triangle',523,.10,.03,.07]],
+        start:[['sine',392,.07,.03,0],['sine',523,.08,.035,.08],['sine',784,.14,.04,.17]],
+        level:[['triangle',440,.07,.028,0],['triangle',660,.08,.032,.075],['triangle',880,.12,.036,.16]],
+        mode:[['sine',523,.07,.03,0],['sine',659,.07,.032,.075],['sine',784,.12,.035,.15]],
+        word:[['triangle',330,.06,.025,0],['triangle',494,.09,.03,.065]],
+        favorite:[['sine',659,.07,.03,0],['sine',988,.12,.035,.08]],
+        next:[['triangle',500,.06,.025,0],['triangle',700,.09,.03,.065]],
+        reset:[['sine',330,.08,.025,0],['sine',220,.13,.025,.09]]
+      };
+      (patterns[kind]||patterns.click).forEach(([type,frequency,duration,volume,delay])=>playTone(ctx,frequency,duration,type,volume,delay));
+    }
+    
+    function normalizeSearchText(value){
+      return String(value ?? '')
+        .toLocaleLowerCase('id-ID')
+        .normalize('NFKD')
+        .replace(/[\u0300-\u036f]/g,'')
+        .replace(/[ṣṡ]/g,'s').replace(/ṭ/g,'t').replace(/ḥ/g,'h')
+        .replace(/ḍ/g,'d').replace(/ẓ/g,'z')
+        .replace(/[ʿʾʻʼ‘’']/g,'')
+        .replace(/[\u064B-\u065F\u0670\u0640]/g,'')
+        .replace(/[أإآٱ]/g,'ا')
+        .replace(/\s+/g,' ')
+        .trim();
+    }
+
+    function renderVocab(filter=''){
+      const q=normalizeSearchText(filter);
+      const list=vocabulary.filter(x=>{
+        const matchCat = (state.vocabCategory==='all' || x.category===state.vocabCategory);
+        const matchLvl = (state.vocabLevel==='all' || x.level===state.vocabLevel);
+        const searchable = normalizeSearchText(`${x.ar} ${x.tr} ${x.id} ${x.example} ${x.exampleId}`);
+        const matchQuery = searchable.includes(q);
+        return matchCat && matchLvl && matchQuery;
+      });
+      const grid=$('#vocabGrid');
+      if(!list.length){grid.innerHTML='<div class="empty-message" style="grid-column:1/-1">Kosakata tidak ditemukan. Coba filter atau kata pencarian lain.</div>';return;}
+      grid.innerHTML=list.map(x=>{
+        const lvlName = x.level === 'easy' ? 'Mudah' : x.level === 'medium' ? 'Sedang' : 'Sulit';
+        return `<article class="vocab-card">
+          <span class="badge-level ${x.level}">${lvlName}</span>
+          <div class="word-visual">${renderVocabImage(x)}</div>
+          <div class="arabic">${x.ar}</div>
+          <div class="translit">${x.tr}</div>
+          <div class="meaning">${x.id}</div>
+          <div class="vocab-example"><span>Contoh Kalimat</span><b class="arabic">${x.example}</b><small>${x.exampleId}</small></div>
+          <div class="vocab-actions">
+            <button class="audio" data-speak="${x.ar}">▶ Dengarkan</button>
+            <button class="favorite ${stats.favorites.includes(x.ar)?'active':''}" data-favorite="${x.ar}" aria-label="Simpan favorit">${stats.favorites.includes(x.ar)?'★':'☆'}</button>
+          </div>
+        </article>`;
+      }).join('');
+    }
+
+    function setLevel(level){
+      if(!isLevelUnlocked(level)){
+        playGameSound('wrong');
+        showToast(levelGateMessage(level));
+        updateLevelLockUI();
+        return false;
+      }
+      state.level=level;
+      playGameSound('level');
+      $$('.level-choice').forEach(b=>b.classList.toggle('active',b.dataset.levelChoice===level));
+      const text=$('#selectedLevelText');
+      if(text)text.textContent=levelCopy[level];
+      showToast(`Level ${level==='easy'?'mudah':level==='medium'?'sedang':'sulit'} dipilih.`);
+      return true;
+    }
+    function showPicker(){ $('#gamePicker').classList.remove('hidden'); $('#gameSession').classList.add('hidden'); updateLevelLockUI(); }
+    function startGame(mode){
+      if(!isLevelUnlocked(state.level)){
+        showToast(levelGateMessage(state.level));
+        showPicker();
+        return false;
+      }
+      state.mode=mode;
+      state.question=0;
+      state.score=0;
+      state.answered=false;
+      state.selected=[];
+      navigate('games');
+      $('#gamePicker').classList.add('hidden');
+      $('#gameSession').classList.remove('hidden');
+      renderQuestion();
+    }
+    
+    const levelWordCounts = {easy:1,medium:2,hard:3};
+    function getLevelPool(lvl) {
+      let pool = vocabulary.filter(x => x.level === lvl);
+      if(!pool.length) pool = vocabulary;
+      return pool;
+    }
+    function getWordQuestionPool(lvl){
+      const target=levelWordCounts[lvl]||1;
+      if(target===1) return getLevelPool(lvl).map(item=>({...item,wordCount:1}));
+      const phrases=(wordPhraseBank[lvl]||[]).filter(item=>Array.isArray(item.answer) && item.answer.length===target);
+      return phrases.map((item,index)=>({
+        key:`${lvl}-phrase-${index}`,
+        ar:item.answer.join(' '),
+        tr:'',
+        id:item.prompt,
+        visual:'≡',
+        img:null,
+        svg:null,
+        category:'phrase',
+        level:lvl,
+        wordCount:target,
+        example:item.answer.join(' '),
+        exampleId:item.prompt
+      }));
+    }
+    function getWordQuestion(lvl,index){
+      const pool=getWordQuestionPool(lvl);
+      return pool[index % pool.length];
+    }
+    function choiceOptions(item,field,level=state.level){
+      const pool=getWordQuestionPool(level).filter(x=>x[field]!==item[field]);
+      const wrong=shuffle(pool).slice(0,3);
+      return shuffle([item,...wrong]);
+    }
+
+    function renderQuestion(){
+      const total = 10;
+      if(state.question >= total){ finishGame(); return; }
+      const pct = Math.round((state.question / total) * 100);
+      const pool = state.mode==='sentence' ? getLevelPool(state.level) : getWordQuestionPool(state.level);
+      const item = state.mode==='sentence' ? pool[state.question % pool.length] : getWordQuestion(state.level,state.question);
+      let body='';
+
+      if(state.mode==='sentence'){
+        const list = sentenceBank[state.level] || sentenceBank.easy;
+        const s = list[state.question % list.length];
+        state.words = shuffle(s.words);
+        state.selected = [];
+        body=`<div class="question-meta">SOAL ${state.question+1} / ${total}</div>
+          <h2>Susun kalimat yang benar</h2>
+          <p class="game-help"><strong>${s.prompt}</strong> — Ketuk ubin kata di bawah secara berurutan.</p>
+          <div class="sentence-area empty" id="sentenceArea"></div>
+          <div class="word-bank" id="wordBank">${state.words.map((w,i)=>`<button class="word-chip" data-word-index="${i}">${w}</button>`).join('')}</div>
+          <div class="feedback" id="feedback"></div>
+          <div class="game-bottom">
+            <small>Ketuk ubin kata dari kanan ke kiri sesuai urutan makna.</small>
+            <button class="btn btn-primary" id="checkSentence">Periksa jawaban</button>
+          </div>`;
+      }
+      else if(state.mode==='listening'){
+        const opts = choiceOptions(item,'id',state.level);
+        const wordCount = item.wordCount || 1;
+        body=`<div class="question-meta">SOAL ${state.question+1} / ${total}</div>
+          <h2>${wordCount===1?'Apa arti kata yang kamu dengar?':'Apa arti rangkaian kata yang kamu dengar?'}</h2>
+          <p class="game-help">Tekan tombol audio untuk mendengarkan ${wordCount} ${wordCount===1?'kata':'kata'}, lalu pilih terjemahan yang tepat.</p>
+          <div class="listen-box">
+            <button class="listen-button" data-speak="${item.ar}" aria-label="Putar audio">▶</button>
+            <small>Audio dapat diputar ulang kapan saja</small>
+          </div>
+          <div class="answer-grid">${opts.map(o=>`<button class="answer" data-answer="${o.id}" data-correct="${item.id}">${o.id}</button>`).join('')}</div>
+          <div class="feedback" id="feedback"></div>
+          <div class="game-bottom">
+            <small>Jawaban benar mendapat 10 poin.</small>
+            <button class="btn btn-primary" id="nextQuestion" style="display:none">Lanjut Soal Berikutnya →</button>
+          </div>`;
+      }
+                              else if(state.mode==='mufrodat'){
+        const opts = choiceOptions(item, 'ar', state.level);
+        const visual = item.img || item.svg 
+            ? `<div class="object-picture">${renderVocabImage(item, "quiz-img")}</div>` 
+            : `<div class="meaning-visual">${item.id}</div>`;
+        body=`<div class="question-meta">SOAL ${state.question+1} / ${total}</div>
+          <h2>Apa bahasa Arab dari benda ini?</h2>
+          <p class="game-help">Perhatikan gambar: <strong>${item.id}</strong></p>
+          <div class="visual-question" style="min-height:150px; display:flex; align-items:center; justify-content:center;">${visual}</div>
+          <div class="answer-grid">${opts.map(o=>`<button class="answer arabic" data-answer="${o.ar}" data-correct="${item.ar}">${o.ar}</button>`).join('')}</div>
+          <div class="feedback" id="feedback"></div>
+          <div class="game-bottom">
+            <small>Pilih kosakata Arab yang sesuai dengan gambar.</small>
+            <button class="btn btn-primary" id="nextQuestion" style="display:none">Lanjut Soal Berikutnya →</button>
+          </div>`;
+      }
+      else {
+        const opts = choiceOptions(item,'id',state.level);
+        const wordCount = item.wordCount || 1;
+        body=`<div class="question-meta">SOAL ${state.question+1} / ${total}</div>
+          <h2>${wordCount===1?'Pilih terjemahan yang tepat':'Pilih terjemahan yang tepat untuk rangkaian kata'}</h2>
+          <p class="game-help">Pahami ${wordCount} ${wordCount===1?'kata Arab':'kata Arab sekaligus'} berikut ke dalam Bahasa Indonesia.</p>
+          <div class="visual-question"><div class="arabic">${item.ar}</div></div>
+          <div class="answer-grid">${opts.map(o=>`<button class="answer" data-answer="${o.id}" data-correct="${item.id}">${o.id}</button>`).join('')}</div>
+          <div class="feedback" id="feedback"></div>
+          <div class="game-bottom">
+            <small>Jawaban benar mendapat 10 poin.</small>
+            <button class="btn btn-primary" id="nextQuestion" style="display:none">Lanjut Soal Berikutnya →</button>
+          </div>`;
+      }
+
+      const lvlName = state.level==='easy'?'Mudah':state.level==='medium'?'Sedang':'Sulit';
+      $('#gameSession').innerHTML=`
+        <aside class="session-side">
+          <h3>Sesi Berjalan</h3>
+          <div class="session-mode">${modeNames[state.mode]}</div>
+          <p>Level <strong>${lvlName}</strong> · 10 Soal Modul </p>
+          <button class="btn btn-ghost" data-exit-session style="width:100%">Keluar dari sesi</button>
+        </aside>
+        <div class="game-board">
+          <div class="game-top">
+            <span class="question-meta">${modeNames[state.mode]} · Lingkungan & Perlengkapan Sekolah</span>
+            <span class="score-badge">★ ${state.score} poin</span>
+          </div>
+          <div class="progress-track"><span style="width:${pct}%"></span></div>
+          ${body}
+        </div>`;
+    }
+
+    function updateScoreBadge(){
+      const badge=$('.score-badge');
+      if(badge) badge.textContent=`★ ${state.score} poin`;
+    }
+
+    function answerChoice(button){
+      if(state.answered)return;
+      state.answered=true;
+      const ok = button.dataset.answer === button.dataset.correct;
+      button.classList.add(ok?'correct':'wrong');
+      $$('.answer').forEach(b=>{
+        b.disabled=true;
+        if(b.dataset.answer===b.dataset.correct) b.classList.add('correct');
+      });
+      const f=$('#feedback');
+      f.textContent=ok?'Benar sekali! Lanjutkan ke soal berikutnya.':'Belum tepat. Kunci jawaban benar ditandai warna hijau.';
+      f.className='feedback '+(ok?'ok':'bad');
+      playGameSound(ok?'correct':'wrong');
+      if(ok){
+        state.score += 10;
+        updateScoreBadge();
+      }
+      $('#nextQuestion').style.display='inline-flex';
+    }
+
+    function chooseWord(button){
+      if(button.classList.contains('used') || state.answered) return;
+      const index = Number(button.dataset.wordIndex);
+      state.selected.push(state.words[index]);
+      playGameSound('word');
+      button.classList.add('used');
+      const area=$('#sentenceArea');
+      area.classList.remove('empty');
+      area.innerHTML=state.selected.map(w=>`<span class="word-chip">${w}</span>`).join('');
+    }
+
+    function checkSentence(){
+      if(state.answered) return;
+      const list = sentenceBank[state.level] || sentenceBank.easy;
+      const item = list[state.question % list.length];
+      const ok = state.selected.join('|') === item.answer.join('|');
+      state.answered=true;
+      const f=$('#feedback');
+      f.textContent = ok ? 'Benar! Susunan kalimat sudah sesuai kaidah.' : `Belum tepat. Urutan yang benar adalah: ${item.answer.join(' ')}`;
+      f.className='feedback '+(ok?'ok':'bad');
+      playGameSound(ok?'correct':'wrong');
+      if(ok){
+        state.score += 10;
+        updateScoreBadge();
+      }
+      const b=$('#checkSentence');
+      b.textContent='Lanjut Soal Berikutnya →';
+    }
+
+    function getEvaluation(pct) {
+      if (pct >= 90) return { title: 'Sangat Baik (Mumtāz)', cls: 'excellent', icon: '★', advice: 'Luar biasa! Penguasaan kosakata dan pemahaman kalimat sudah sangat matang sesuai kriteria kurikulum .' };
+      if (pct >= 70) return { title: 'Baik (Jayyid)', cls: 'good', icon: '✓', advice: 'Bagus sekali! Kamu telah menguasai sebagian besar materi dengan tepat. Siap lanjut ke tantangan berikutnya!' };
+      if (pct >= 50) return { title: 'Perlu Latihan (Maqbūl)', cls: 'practice', icon: '▲', advice: 'Cukup baik. Luangkan waktu untuk mengulang latihan di mode ini agar kosakata semakin melekat kuat.' };
+      return { title: 'Perlu Belajar dengan Pendamping', cls: 'repeat', icon: '↺', advice: 'Ulangi membaca materi mufradat dan pelajari kembali bersama bimbingan guru atau teman pendamping.' };
+    }
+
+    function finishGame(){
+      const total = 10;
+      const pct = Math.round((state.score / (total * 10)) * 100);
+      lastResult = { mode: state.mode, score: state.score, total, pct, level: state.level };
+      stats.solved += 10;
+      stats.stars += Math.max(1, Math.round(state.score / 20));
+      stats.modes[state.mode] = Math.max(stats.modes[state.mode]||0, pct);
+      stats.best = Math.max(stats.best, pct);
+      stats.levels = stats.levels || {};
+      stats.levels[state.level] = {...{completed:false,best:0},...(stats.levels[state.level]||{}),completed:true,best:Math.max(stats.levels[state.level]?.best||0,state.score)};
+      if(state.level==='easy' && stats.levels.easy.best >= 90){
+        stats.levels.medium.unlocked=true;
+      }
+      if(state.level==='medium' && stats.levels.medium.best >= 90){
+        stats.levels.hard.unlocked=true;
+      }
+      stats.history.unshift({ mode: state.mode, level: state.level, score: state.score, pct, date: new Date().toLocaleDateString('id-ID') });
+      stats.history = stats.history.slice(0,5);
+      saveStats();
+      renderResult();
+      navigate('result');
+    }
+
+    function renderResult(){
+      const r = lastResult;
+      const ev = getEvaluation(r.pct);
+      const lvlName = r.level === 'easy' ? 'Mudah' : r.level === 'medium' ? 'Sedang' : 'Sulit';
+      $('#resultContent').innerHTML = `
+        <div class="result-card">
+          <div class="result-check">${ev.icon}</div>
+          <h1>Sesi Selesai!</h1>
+          <p>Mode <strong>${modeNames[r.mode]}</strong> · Level <strong>${lvlName}</strong> · Tema Lingkungan & Perlengkapan Sekolah</p>
+          <div class="result-score">${r.pct}%</div>
+          <div class="result-predicate ${ev.cls}">${ev.title}</div>
+          <p class="result-advice">${ev.advice}</p>
+          <div class="result-stats">
+            <div class="result-stat"><strong>${r.score/10} / ${r.total}</strong><span>soal benar</span></div>
+            <div class="result-stat"><strong>${Math.max(1, Math.round(r.score/20))}</strong><span>bintang didapat</span></div>
+            <div class="result-stat"><strong>${r.score}</strong><span>total poin</span></div>
+          </div>
+          <div class="actions" style="justify-content:center;display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-primary" data-replay>Main lagi</button>
+            <button class="btn btn-ghost" data-route="games">Pilih mode lain</button>
+            <button class="btn btn-soft" data-route="materials">Buka materi</button>
+            <button class="btn btn-yellow" data-route="progress">Lihat progres</button>
+          </div>
+        </div>`;
+    }
+
+    document.addEventListener('click',e=>{
+      const category=e.target.closest('[data-vocab-category]');
+      if(category){
+        playGameSound('click');
+        state.vocabCategory=category.dataset.vocabCategory;
+        $$('[data-vocab-category]').forEach(b=>b.classList.toggle('active',b===category));
+        renderVocab($('#vocabSearch')?.value||'');
+        return;
+      }
+
+      const lvlFilter=e.target.closest('[data-vocab-level]');
+      if(lvlFilter){
+        playGameSound('click');
+        state.vocabLevel=lvlFilter.dataset.vocabLevel; state.vocabCategory='all';
+        $$('[data-vocab-level]').forEach(b=>b.classList.toggle('active',b===lvlFilter));
+        renderVocab($('#vocabSearch')?.value||'');
+        return;
+      }
+
+      const route=e.target.closest('[data-route]');
+      if(route){
+        playGameSound('navigate');
+        const r=route.dataset.route;
+        if(r==='games'&&state.mode&&$('#gameSession')&&!$('#gameSession').classList.contains('hidden')) showPicker();
+        navigate(r);
+        return;
+      }
+
+      if(e.target.closest('[data-start-app]')){ playGameSound('start'); navigate('home'); return; }
+
+      const level=e.target.closest('[data-level]');
+      if(level){
+        const selectedLevel=level.dataset.level;
+        if(!setLevel(selectedLevel)) return;
+        navigate('games');
+        return;
+      }
+
+      const choice=e.target.closest('[data-level-choice]');
+      if(choice){ setLevel(choice.dataset.levelChoice); return; }
+
+      const mode=e.target.closest('[data-start-mode]');
+      if(mode){ playGameSound('mode'); startGame(mode.dataset.startMode); return; }
+
+      const answer=e.target.closest('[data-answer]');
+      if(answer){ answerChoice(answer); return; }
+
+      const word=e.target.closest('[data-word-index]');
+      if(word){ chooseWord(word); return; }
+
+      const audio=e.target.closest('[data-speak]');
+      if(audio){ playGameSound('click'); speak(audio.dataset.speak); return; }
+
+      if(e.target.id==='nextQuestion'){
+        playGameSound('next');
+        state.question++;
+        state.answered=false;
+        renderQuestion();
+        return;
+      }
+
+      if(e.target.id==='checkSentence'){
+        if(state.answered){
+          playGameSound('next');
+          state.question++;
+          state.answered=false;
+          renderQuestion();
+        } else {
+          checkSentence();
+        }
+        return;
+      }
+
+      if(e.target.closest('[data-exit-session]')){ playGameSound('navigate'); state.mode=null; showPicker(); return; }
+
+      if(e.target.closest('[data-replay]')){ playGameSound('start'); startGame(lastResult.mode); return; }
+
+      if(e.target.id==='randomVocab'){
+        playGameSound('click');
+        const item=vocabulary[Math.floor(Math.random()*vocabulary.length)];
+        $('#vocabSearch').value=item.id;
+        renderVocab(item.id);
+        showToast(`Menampilkan kata: ${item.id}`);
+        return;
+      }
+
+      const fav=e.target.closest('[data-favorite]');
+      if(fav){
+        playGameSound('favorite');
+        const ar=fav.dataset.favorite;
+        if(stats.favorites.includes(ar)) stats.favorites=stats.favorites.filter(x=>x!==ar);
+        else stats.favorites.push(ar);
+        saveStats();
+        renderVocab($('#vocabSearch')?.value||'');
+        return;
+      }
+
+      if(e.target.id==='resetProgress'){
+        playGameSound('reset');
+        stats=createDefaultStats();
+        saveStats();
+        updateLevelLockUI();
+        showToast('Progres sudah direset.');
+        return;
+      }
+    });
+
+    $('#vocabSearch').addEventListener('input',e=>renderVocab(e.target.value));
+    renderVocab();
+    updateStatsUI();
+    updateLevelLockUI();
+  </script>
+</body>
+</html>

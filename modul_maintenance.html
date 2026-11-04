@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Maintenance - Laib Wa Fikrah</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+        .document {
+            background: white;
+            padding: 50px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 4px solid #e67e22;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        h2 {
+            color: #d35400;
+            border-left: 6px solid #e67e22;
+            padding-left: 15px;
+            margin-top: 35px;
+            background: #fff5eb;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #444;
+            margin-top: 20px;
+            border-bottom: 1px solid #ddd;
+            display: inline-block;
+        }
+        .warning-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .info-box {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .code-block {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        ul, ol {
+            margin-bottom: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .footer-doc {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        @media print {
+            body { background: white; margin: 0; padding: 0; }
+            .document { box-shadow: none; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <h1>🛠️ MODUL MAINTENANCE APLIKASI<br>LAIB WA FIKRAH</h1>
+        <p style="text-align: center; font-style: italic;">Panduan Pemeliharaan, Update Data, dan Troubleshooting</p>
+        
+        <div class="info-box">
+            <strong>Tujuan Dokumen:</strong> Memberikan panduan teknis bagi pengelola aplikasi untuk melakukan pembaruan konten, manajemen aset, dan perbaikan error ringan guna menjaga stabilitas aplikasi.
+        </div>
+
+        <h2 id="dir">1. Struktur Direktori & File</h2>
+        <p>Sangat penting untuk menjaga struktur folder agar aplikasi tidak mengalami <em>Broken Link</em> (Gambar tidak muncul).</p>
+        <div class="code-block">
+            /LaibWaTaallam-Rancangan-UIUX/<br>
+            ├── index.html &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (File Utama / Source Code)<br>
+            └── /assets/ <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;├── app-background.jpg &nbsp;&nbsp; (Background Utama)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;├── welcome-background.jpg (Background Welcome Screen)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;└── /vocab/ <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── kelas.jpg &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (Gambar Kosakata)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── buku_tulis.jpg &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (Gambar Kosakata)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── ... (File .svg/.jpg lainnya)
+        </div>
+
+        <h2 id="vocab">2. Update & Penambahan Kosakata</h2>
+        <p>Kosakata disimpan di dalam array JavaScript di dalam file <code>index.html</code>. Cari bagian variabel <code>vocabulary</code>.</p>
+        <h3>Cara Mengedit Kata:</h3>
+        <ol>
+            <li>Buka <code>index.html</code> dengan teks editor (VS Code/Notepad).</li>
+            <li>Cari kata kunci <code>const vocabulary = [</code>.</li>
+            <li>Edit objek kata yang diinginkan. Contoh:
+                <div class="code-block">
+                    { word: "مدرسة", translation: "sekolah", category: "Bangunan", level: "Mudah", image: "assets/vocab/sekolah.jpg" }
+                </div>
+            </li>
+            <li>Simpan file dan Refresh browser.</li>
+        </ol>
+        <div class="warning-box">
+            ⚠️ PERINGATAN: Pastikan setiap objek memiliki tanda koma (,) di akhir kurung kurawal <code>}</code> kecuali pada objek terakhir dalam array.
+        </div>
+
+        <h2 id="assets">3. Manajemen Aset Gambar</h2>
+        <p>Jika ingin mengganti gambar kosakata dengan foto baru:</p>
+        <ul>
+            <li><strong>Nama File:</strong> Pastikan nama file baru sama persis dengan nama file lama (contoh: <code>tas.jpg</code>).</li>
+            <li><strong>Format File:</strong> Jika mengganti dari <code>.svg</code> ke <code>.jpg</code>, Anda <strong>WAJIB</strong> mengubah ekstensi file di dalam kode <code>index.html</code>.</li>
+            <li><strong>Lokasi:</strong> Simpan selalu di dalam folder <code>assets/vocab/</code>.</li>
+        </ul>
+
+        <h2 id="footer">4. Update Tautan Media Sosial</h2>
+        <p>Untuk mengganti link Instagram, TikTok, atau Facebook:</p>
+        <ol>
+            <li>Cari tag <code>&lt;nav class="footer-socials"&gt;</code> di bagian bawah file <code>index.html</code>.</li>
+            <li>Ganti bagian <code>href="URL_LAMA"</code> menjadi <code>href="URL_BARU"</code>.</li>
+            <li>Ganti teks di dalam tag <code>&lt;span&gt;Nama Lama&lt;/span&gt;</code> menjadi nama baru.</li>
+        </ol>
+
+        <h2 id="trouble">5. Troubleshooting (Solusi Masalah)</h2>
+        <table>
+            <tr>
+                <th align="left">Masalah</th>
+                <th align="left">Solusi</th>
+            </tr>
+            <tr>
+                <td>Gambar tidak muncul (X)</td>
+                <td>Cek apakah nama file di folder <code>assets/vocab/</code> sama persis dengan yang tertulis di kode (termasuk huruf besar/kecil).</td>
+            </tr>
+            <tr>
+                <td>Audio tidak berbunyi</td>
+                <td>Pastikan speaker aktif dan browser tidak dalam mode "Mute". Beberapa browser mewajibkan klik satu kali di halaman sebelum audio bisa berjalan.</td>
+            </tr>
+            <tr>
+                <td>Halaman Putih/Blank</td>
+                <td>Cek apakah ada tanda petik atau koma yang terhapus saat mengedit kosakata.</td>
+            </tr>
+        </table>
+
+        <h2 id="backup">6. Strategi Backup & Keamanan</h2>
+        <ul>
+            <li><strong>Manual Backup:</strong> Copy seluruh folder <code>LaibWaTaallam-Rancangan-UIUX</code> ke Google Drive atau Flashdisk setiap kali melakukan update besar.</li>
+            <li><strong>Version Control:</strong> Disarankan membuat salinan file <code>index.html.bak</code> sebelum melakukan pengeditan kode yang kompleks.</li>
+        </ul>
+
+        <div class="footer-doc">
+            &copy; 2026 Laib Wa Fikrah - Dokumen Teknis Pemeliharaan Sistem
+        </div>
+    </div>
+</body>
+</html>
